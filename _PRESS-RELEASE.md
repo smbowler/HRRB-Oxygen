@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Bus It baby! 
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > 
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > People fall asleep on public transit, whether intentionally or otherwise. 'Bus It baby!' keeps track of your location and wakes you up in time to get off at the right stop. When you are a distance you define from your stop, 'Bus It baby!' will alert you in the way you choose to wake up and ge your gear together. It is also handy when you are on a noisy bus and can't quite hear the driver!
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Have you ever missed your stop and ended up on wrong part of town? Have you ever wanted to read or fall asleep on the bus but couldn't because you were worried you might miss your stop? If so...
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Use Bus It baby! Our app will notify you before you reach your destination.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "Download our app now! Or else..."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Pick a bus line and go to sleep!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "Now that I use 'Bus it baby!', I can sleep on the bus all the time!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > 

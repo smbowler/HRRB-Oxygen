@@ -1,44 +1,14 @@
-angular.module('ionicApp', ['ionic'])
+angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'busitbaby.services'])
 
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
 
-.controller('MainCtrl', function($scope){
-	console.log("this is the first page!");
-
+    }
+  });
 })
-.controller('trackCtrl', function($scope){
-	console.log("this is the second page with maps and start&end destination");
-})
-.controller('AlarmCtrl', function($scope) {
-	console.log("Check out your alarm lists!");
-
-  $scope.loudAlarmList = [
-    { text: "RingaRinga"},
-    { text: "BokBokBok"},
-    { text: "RAWLRRRRR"},
-  ];
-  $scope.softAlarmList = [
-    { text: "loolala"},
-    { text: "numnomnom"},
-    { text: "dubdubeedu"},
-  ];
-
-   $scope.vibrate = [
-    { text: "vibrate"} 
-  ]
-
-}) 
-.controller('EndCtrl', function($scope){
-	console.log("final page");
-})
-.controller('SigninCtrl', function($scope){
-	console.log("sign in page");
-
-
-})
-.controller('SignupCtrl', function($scope){
-	console.log("sign up page");
-})
-
 
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -54,9 +24,9 @@ angular.module('ionicApp', ['ionic'])
 			templateUrl: "templates/page2.html",
 			controller: 'trackCtrl'
 		})
-		.state('page3', {
-			url: "/page3",
-			templateUrl: "templates/page3.html",
+		.state('alarm', {
+			url: "/alarm",
+			templateUrl: "templates/alarm.html",
 			controller: 'AlarmCtrl'
 		})
 		.state('page4', {
@@ -73,6 +43,11 @@ angular.module('ionicApp', ['ionic'])
 			url: "/signup",
 			templateUrl: "templates/signup.html",
 			controller: 'SignupCtrl'
+		})
+		.state('record', {
+			url: "/record",
+			templateUrl: "templates/record.html",
+			controller: 'RecordCtrl'
 		})
 		$urlRouterProvider.otherwise('/main');
 

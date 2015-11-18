@@ -1,0 +1,32 @@
+ <ion-header-bar class="bar-positive">
+      <h1 class="title">Record your own alarms</h1>
+</ion-header-bar>
+<ion-view>
+
+  <ion-content class="padding">
+
+    <div ng-if="sounds.length > 0">
+      <ion-list show-delete="false" can-swipe="true">
+        <ion-item ng-repeat="sound in sounds" ng-click="play($index)">
+          {{sound.name}}
+          
+          <ion-option-button class="button-assertive" ng-click="delete($index)">
+          Delete
+          </ion-option-button>    
+
+        </ion-item>
+      </ion-list>
+    </div>
+  <div ng-if="sounds.length < 1">
+    <p>
+      No sounds yet. Why not record a new one?
+    </p>
+  </div>
+
+    <div style="text-align: center">
+    <a class="button" href="#/record" >Record Alarms</a>
+    </div>
+     
+  </ion-content>
+
+</ion-view>

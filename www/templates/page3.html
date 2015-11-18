@@ -1,0 +1,35 @@
+
+ <ion-header-bar class="bar-positive">
+      <h1 class="title">Choose your Alarm!</h1>
+</ion-header-bar>
+  <ion-content>
+        <div class="list">
+          <div class="item item-divider"> 
+            Loud Alarm Sounds
+          </div>
+          
+          <ion-radio ng-repeat="item in loudAlarmList"
+                     name="loudAlarms">        
+            {{ item.text }}
+          </ion-radio>
+          
+          <div class="item item-divider">
+            Soft Alarm Sounds
+          </div>
+          
+          <ion-radio ng-repeat="item in softAlarmList"
+                     name="softAlarms">
+            {{ item.text }}
+          </ion-radio>
+
+          <div class="item item-divider">
+            Vibrate
+          </div>
+          <ion-radio ng-repeat="item in vibrate"
+                     name="vibrate">
+            {{ item.text }}
+          </ion-radio>
+        </div>
+        <a class="button" href="#/page4">Start Tracking</a>
+  </ion-content>
+

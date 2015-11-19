@@ -3,7 +3,7 @@
       <h1 class="title">Home</h1>
 </ion-header-bar>
 
-  <ion-content>
+  <ion-content ng-controller="facebookCtrl">
     <br><h3>Welcome to Bus It Baby! </h3>
     <p style="margin: 20px">With our app, you will never worry about missing your bus stop by listening to music, reading books, or accidentally falling asleep during transit. Bus It Baby! will alert you when you are within a specified distance from your destination.</p>
 
@@ -11,10 +11,12 @@
       width = "250px" height = "200px" align = "middle">
 
     <br><br>
-    <a class="button" href="#/">Sign In with Google</a>
-    <!-- <a class="button" href="#/signup">Sign Up</a> -->
+    <button class="button button-full button-positive" ng-click="login('google')">Login with Google</button>
+
+    <button class="button button-full button-outline button-assertive" ng-click="logout()">Logout</button>
     <br> 
     <a class="button" href="#/page2" style="margin-top: 10px">Use as Guest</a>
+
 
 
 

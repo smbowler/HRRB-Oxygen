@@ -1,6 +1,9 @@
-// angular.module('busitbaby.services', [])
+angular.module('busitbaby.services', [])
 
-// })
+.factory("Auth", function($firebaseAuth) {
+  var usersRef = new Firebase("https://busitbaby.firebaseio.com/users");
+  return $firebaseAuth(usersRef);
+});
 
 
 // .factory('Sounds', function($q) {

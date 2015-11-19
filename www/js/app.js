@@ -1,4 +1,4 @@
-angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busitbaby.services'])
+angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busitbaby.services', 'trackingModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

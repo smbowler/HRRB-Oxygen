@@ -23,7 +23,19 @@
           <div class="input-label">
           Stop
           </div>
-          <select class="stop" ng-model="data.stop" ng-change="getLoc()"></option>
+          <select class="stop" ng-model="data.stop">
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+          Distance
+          </div>
+          <select class="distance" ng-model="data.miles" ng-change="getLoc()">
+            <option selected disabled>Miles</option>
+            <option>0.5</option>
+            <option>1</option>
+            <option>1.5</option>
+            <option>2</option>
           </select>
         </label>
 

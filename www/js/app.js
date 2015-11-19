@@ -1,4 +1,4 @@
-angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers'])
+angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'firebase'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -60,7 +60,3 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers'])
 		$urlRouterProvider.otherwise('/main');
 
 });
-
-
-
-  

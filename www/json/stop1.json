@@ -1,0 +1,249 @@
+{
+    "stops": [
+        {
+            "id": "MTA_403670",
+            "latitude": 40.849113,
+            "longitude": -73.937752,
+            "name": "W 179 ST/BROADWAY",
+            "stopDirection": "W"
+        },
+        {
+            "id": "MTA_403667",
+            "latitude": 40.848492,
+            "longitude": -73.93856,
+            "name": "W 178 ST/FT WASHINGTON AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_400799",
+            "latitude": 40.84803,
+            "longitude": -73.936989,
+            "name": "W 178 ST/BROADWAY",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_403783",
+            "latitude": 40.849579,
+            "longitude": -73.935066,
+            "name": "WADSWORTH AV/W 181 ST",
+            "stopDirection": "NE"
+        },
+        {
+            "id": "MTA_403656",
+            "latitude": 40.849068,
+            "longitude": -73.933342,
+            "name": "W 181 ST/ST NICHOLAS AV",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_403658",
+            "latitude": 40.848164,
+            "longitude": -73.931183,
+            "name": "W 181 ST/AMSTERDAM AV",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_100737",
+            "latitude": 40.843613,
+            "longitude": -73.923775,
+            "name": "OGDEN AV/UNIVERSITY AV",
+            "stopDirection": "S"
+        },
+        {
+            "id": "MTA_100738",
+            "latitude": 40.842209,
+            "longitude": -73.924408,
+            "name": "OGDEN AV/W 171 ST",
+            "stopDirection": "SW"
+        },
+        {
+            "id": "MTA_100740",
+            "latitude": 40.840248,
+            "longitude": -73.925346,
+            "name": "OGDEN AV/W 169 ST",
+            "stopDirection": "S"
+        },
+        {
+            "id": "MTA_100741",
+            "latitude": 40.838257,
+            "longitude": -73.924576,
+            "name": "W 168 ST/NELSON AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_100742",
+            "latitude": 40.838421,
+            "longitude": -73.923294,
+            "name": "WOODYCREST AV/W 168 ST",
+            "stopDirection": "NE"
+        },
+        {
+            "id": "MTA_100743",
+            "latitude": 40.839535,
+            "longitude": -73.922455,
+            "name": "SHAKESPEARE AV/W 169 ST",
+            "stopDirection": "N"
+        },
+        {
+            "id": "MTA_100744",
+            "latitude": 40.840107,
+            "longitude": -73.921059,
+            "name": "W 170 ST/EDWARD L GRANT HY",
+            "stopDirection": "NE"
+        },
+        {
+            "id": "MTA_100745",
+            "latitude": 40.84021,
+            "longitude": -73.917816,
+            "name": "W 170 ST/JEROME AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_103018",
+            "latitude": 40.839363,
+            "longitude": -73.915649,
+            "name": "E 170 ST/WALTON AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_102994",
+            "latitude": 40.838703,
+            "longitude": -73.914154,
+            "name": "E 170 ST/GRAND CONCOURSE",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_103278",
+            "latitude": 40.83849,
+            "longitude": -73.913589,
+            "name": "E 170 ST/GRAND CONCOURSE",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_103435",
+            "latitude": 40.837608,
+            "longitude": -73.911079,
+            "name": "E 170 ST/MORRIS AV",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_100748",
+            "latitude": 40.837128,
+            "longitude": -73.909821,
+            "name": "E 170 ST/FINDLAY AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_100749",
+            "latitude": 40.837063,
+            "longitude": -73.908218,
+            "name": "E 170 ST/CLAY AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_100750",
+            "latitude": 40.838631,
+            "longitude": -73.906395,
+            "name": "CLAY AV/E 171 ST",
+            "stopDirection": "NE"
+        },
+        {
+            "id": "MTA_100751",
+            "latitude": 40.839508,
+            "longitude": -73.904976,
+            "name": "CLAREMONT PKY/WEBSTER AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_100752",
+            "latitude": 40.838615,
+            "longitude": -73.902321,
+            "name": "CLAREMONT PKY/WASHINGTON AV",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_100753",
+            "latitude": 40.837936,
+            "longitude": -73.900841,
+            "name": "CLAREMONT PKY/3 AV",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_100754",
+            "latitude": 40.836376,
+            "longitude": -73.897964,
+            "name": "CLAREMONT PKY/CROTONA AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_100755",
+            "latitude": 40.834927,
+            "longitude": -73.894341,
+            "name": "CLAREMONT PKY/BOSTON RD",
+            "stopDirection": "SE"
+        },
+        {
+            "id": "MTA_103217",
+            "latitude": 40.833088,
+            "longitude": -73.893112,
+            "name": "LOUIS NINE BL/E 170 ST",
+            "stopDirection": "S"
+        },
+        {
+            "id": "MTA_104043",
+            "latitude": 40.832275,
+            "longitude": -73.890587,
+            "name": "JENNINGS ST/SOUTHERN BL",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_104044",
+            "latitude": 40.831982,
+            "longitude": -73.889709,
+            "name": "JENNINGS ST/HOE AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_104045",
+            "latitude": 40.831074,
+            "longitude": -73.887131,
+            "name": "JENNINGS ST/LONGFELLOW AV",
+            "stopDirection": "E"
+        },
+        {
+            "id": "MTA_104046",
+            "latitude": 40.830193,
+            "longitude": -73.886345,
+            "name": "W FARMS RD/BOONE AV",
+            "stopDirection": "SW"
+        },
+        {
+            "id": "MTA_104047",
+            "latitude": 40.829201,
+            "longitude": -73.887932,
+            "name": "W FARMS RD/LONGFELLOW AV",
+            "stopDirection": "SW"
+        },
+        {
+            "id": "MTA_104048",
+            "latitude": 40.828274,
+            "longitude": -73.888794,
+            "name": "W FARMS RD/BRYANT AV",
+            "stopDirection": "SW"
+        },
+        {
+            "id": "MTA_104373",
+            "latitude": 40.82711,
+            "longitude": -73.889824,
+            "name": "WEST FARMS RD/VYSE AV",
+            "stopDirection": "SW"
+        },
+        {
+            "id": "MTA_802017",
+            "latitude": 40.825272,
+            "longitude": -73.891426,
+            "name": "WEST FARMS RD/HOE AV",
+            "stopDirection": "SW"
+        }
+    ]
+}

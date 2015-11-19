@@ -1,14 +1,17 @@
-angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'busitbaby.services'])
+angular.module('busitbaby', ['ionic', 'busitbaby.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
     }
   });
 })
+
 
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -24,9 +27,9 @@ angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'busitbaby.servic
 			templateUrl: "templates/page2.html",
 			controller: 'trackCtrl'
 		})
-		.state('alarm', {
-			url: "/alarm",
-			templateUrl: "templates/alarm.html",
+		.state('page3', {
+			url: "/page3",
+			templateUrl: "templates/page3.html",
 			controller: 'AlarmCtrl'
 		})
 		.state('page4', {
@@ -44,11 +47,16 @@ angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'busitbaby.servic
 			templateUrl: "templates/signup.html",
 			controller: 'SignupCtrl'
 		})
-		.state('record', {
-			url: "/record",
-			templateUrl: "templates/record.html",
-			controller: 'RecordCtrl'
+		.state('about', {
+			url: "/about",
+			templateUrl: "templates/about.html",
+			controller: 'AboutCtrl'
 		})
+		// .state('record', {
+		// 	url: "/record",
+		// 	templateUrl: "templates/record.html",
+		// 	controller: 'RecordCtrl'
+		// })
 		$urlRouterProvider.otherwise('/main');
 
 });

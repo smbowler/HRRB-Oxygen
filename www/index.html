@@ -1,5 +1,5 @@
 <<!DOCTYPE html>
-<html>
+<html ng-app="busitbaby">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -13,28 +13,26 @@
     <script src="js/services.js"></script>
   </head>
 
-  <body ng-app="busitbaby">
+  <body>
 
-             
-    <ion-nav-view></ion-nav-view>
-
+  <ion-nav-view></ion-nav-view>
 
 
+  <ion-tabs class="tabs-icon-top tabs-positive">
+    <ion-tab title="Home" icon="icon ion-home" href="#/">
+      <ion-nav-view name = "home"></ion-nav-view>
+    </ion-tab>
 
-    <ion-tabs class="tabs-icon-top tabs-positive">
-      <!-- Home Tab -->
-      <ion-tab title="Home" icon="icon ion-home" href="#/main">
-        <ion-nav-view name = "tab-home"></ion-nav-view>
-      </ion-tab>
-      <!-- Your Account -->
-      <ion-tab title="Your Account" icon="icon ion-gear-b" href="">
-        <ion-nav-view name = "tab-account"></ion-nav-view>
-      </ion-tab>
-      <!-- About Us -->
-      <ion-tab title="About" icon="icon ion-happy-outline" href="">
-        <ion-nav-view name = "tab-about"></ion-nav-view>
-      </ion-tab>
-    </ion-tabs>
+    <ion-tab title="Your Account" icon="icon ion-gear-b" href="">
+      <ion-nav-view name = "account"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="About" icon="icon ion-happy-outline" href="#/about">
+      <ion-nav-view name = "about"></ion-nav-view>
+    </ion-tab>
+ </ion-tabs>
+
+ 
     
   </body>
 </html>

@@ -14,6 +14,7 @@ angular.module('busitbaby.services', [])
       this.populateMap();
       this.renderBus();
       this.setOptions();
+      this.addDraggableMarker();
     },
 
     populateMap: function(){
@@ -76,6 +77,20 @@ angular.module('busitbaby.services', [])
       }
     },
 
+    addDraggableMarker: function(){
+      // var image = ''; // Use your own image
+      var marker = new google.maps.Marker({
+        position: {lat: 40.849462, lng: -73.882599 },
+        map: this.map,
+        // icon: image,
+        draggable: true
+      });
+
+      marker.addListener('dragend', function() {
+        var coords = marker.getPosition();
+        $scope.getLoc(coords);
+      });
+    }
 
   }
     return obj;
@@ -92,28 +107,28 @@ angular.module('busitbaby.services', [])
 // 			localStorage.busitbaby = JSON.stringify(sounds);
 // 			deferred.resolve();
 // 		});
-	
-// 		return deferred.promise;			
-	
+
+// 		return deferred.promise;
+
 // 	}
-	
+
 // 	var getSounds = function() {
 // 		var deferred = $q.defer();
 // 		var sounds = [];
-		
+
 // 		if(localStorage.busitbaby) {
 // 			sounds = JSON.parse(localStorage.busitbaby);
 // 		}
 // 		deferred.resolve(sounds);
-	
+
 // 		return deferred.promise;
 // 	}
-	
+
 // 	var playSound = function(x) {
 // 		getSounds().then(function(sounds) {
 // 			var sound = sounds[x];
 
-		
+
 // 			var mediaUrl = sound.file;
 // 			if(device.platform.indexOf("iOS") >= 0) {
 // 				mediaUrl = "../Library/NoCloud/FILE" + mediaUrl.split("/").pop();
@@ -123,10 +138,10 @@ angular.module('busitbaby.services', [])
 // 			}, function(err) {
 // 				console.log("media err", err);
 // 			});
-// 			media.play();			
-// 		});		
+// 			media.play();
+// 		});
 // 	}
-	
+
 // 	var saveSound = function(s) {
 // 		console.log("calling saveSound");
 // 		var deferred = $q.defer();
@@ -135,8 +150,8 @@ angular.module('busitbaby.services', [])
 // 			localStorage.busitbaby = JSON.stringify(sounds);
 // 			deferred.resolve();
 // 		});
-	
-// 		return deferred.promise;			
+
+// 		return deferred.promise;
 // 	}
 
 // 	return {

@@ -34,7 +34,7 @@ angular.module('busitbaby.controllers', [])
   console.log("Check out your alarm lists!");
    $scope.alarmList = [
     { id: 1, title: "September Remix", artist: "Kirk Franklin", url: '/music/september.mp3' },
-    { id: 2, title: "Vibrate", artist: "", url: "" } 
+    { id: 2, title: "Vibrate", artist: "", url: "" }
   ];
 
 
@@ -62,30 +62,45 @@ angular.module('busitbaby.controllers', [])
     $scope.authData = authData;
   });
 })
+<<<<<<< HEAD
 
 .controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
+=======
+.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', function($scope, fireMap, isWithinRadius){
+>>>>>>> 0e56d5d85d030a77d2d94ae092f7b9113ef8a131
   $scope.init = function(){
     fireMap.init();
   }
 
   $scope.data = {
     sel: 'Going to W. Farms Rd',
-    stop: ''
+    stop: '',
+		miles: 'Miles'
   }
 
   $scope.options = function(){
     fireMap.setOptions();
   }
 
-  $scope.getLoc = function(){
+  $scope.getLoc = function(optionalCoords){
     var stopArr = fireMap.data.stops;
+    var coords = {};
+    if( optionalCoords ){
+      coords.latitude = optionalCoords.lat,
+      coords.longitude = optionalCoords.lng;
+    } else {
+      coords = {latitude: 40.827072, longitude: -73.889633};
+    }
     for(var i = 0; i < stopArr.length; i++){
       var stop = stopArr[i];
       if(stop.name === $scope.data.stop){
-
+				var end = {latitude: stop.latitude, longitude: stop.longitude}
         //call location function
-        console.log(stop.latitude)
-        console.log(stop.longitude)
+				console.log($scope.data.miles)
+				isWithinRadius($scope.data.miles, end, coords, function(){
+					console.log('hi')
+				})
+
       }
     }
   }
@@ -115,12 +130,12 @@ angular.module('busitbaby.controllers', [])
 //     console.log('enter');
 //     getSounds();
 //   });
-  
+
 //   $scope.play = function(x) {
 //     console.log('play', x);
-//     Sounds.play(x); 
+//     Sounds.play(x);
 //   }
-  
+
 //   $scope.delete = function(x) {
 //     console.log('delete', x);
 //     Sounds.get().then(function(sounds) {
@@ -136,7 +151,7 @@ angular.module('busitbaby.controllers', [])
 //       });
 //     });
 //   }
-  
+
 //   $scope.cordova = {loaded:false};
 //   $ionicPlatform.ready(function() {
 //     $scope.$apply(function() {
@@ -150,26 +165,26 @@ angular.module('busitbaby.controllers', [])
 //   console.log(navigator);
 //   console.log(window.navigator.device)
 //   console.log("i am inside Record Controller");
-  
+
 //   $scope.sound = {name:""};
-  
+
 //   $scope.saveSound = function() {
 //     console.log('trying to save '+$scope.sound.name);
 
 //     //error checking
 //     if($scope.sound.name === "") {
 //       navigator.notification.alert("Name this sound first.", null, "Error");
-//       return;     
+//       return;
 //     }
-    
+
 //     if(!$scope.sound.file) {
 //       navigator.notification.alert("Record a sound first.", null, "Error");
-//       return;     
+//       return;
 //     }
-    
-    
+
+
 //     var loc = cordova.file.dataDirectory;
-   
+
 //     var extension = $scope.sound.file.split(".").pop();
 //     var filepart = Date.now();
 //     var filename = filepart + "." + extension;
@@ -189,38 +204,38 @@ angular.module('busitbaby.controllers', [])
 //             });
 //             $state.go("home");
 //           });
-          
+
 //         }, function(e) {
 //           console.log('error in copy');console.dir(e);
-//         });         
+//         });
 //       }, function(e) {
 //         console.log("error");
 //         console.dir(e);
 //       });
-      
-      
+
+
 //     }, function(e) {
 //       console.log('error in fs');console.dir(e);
 //     });
 
-    
+
 //   }
 
 //   var captureError = function(e) {
 //     console.log('captureError', e);
 //   }
-  
+
 //   var captureSuccess = function(e) {
 //     console.log('captureSuccess');console.dir(e);
 //     $scope.sound.file = e[0].localURL;
 //     $scope.sound.filePath = e[0].fullPath;
 //   }
-  
+
 //   $scope.record = function() {
 //     navigator.device.capture.captureAudio(
 //         captureSuccess,captureError,{duration:10});
 //   }
-  
+
 //   $scope.play = function() {
 //     if(!$scope.sound.file) {
 //       navigator.notification.alert("Record a sound first.", null, "Error");

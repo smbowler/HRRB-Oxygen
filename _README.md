@@ -1,12 +1,12 @@
-# Project Name
+# Bus It Baby!
 
-> Pithy project description
+> An awesome mobile app that eliminates the chances of you missing your stop while riding on a bus. 
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Alon Robinson
+  - __Scrum Master__: David Lee
+  - __Development Team Members__: Hera Kim, Mykia Smith
 
 ## Table of Contents
 
@@ -20,15 +20,21 @@
 
 ## Usage
 
-> Some usage instructions
+> 1. Select your starting point and end point.
+> 2. Choose the how far from your stop you want to be notified.
+> 3. Choose your alarm: sound or vibrate.
+> 4. Take a nap and Bus It Baby will notify you once you've reached the point before your stop.
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Cordova
+- Ionic
+- Angular
+- Firebase
+- AngularFire
+- Google Maps API
+- HTML5 Geolocation
 
 ## Development
 
@@ -37,14 +43,15 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
+sudo npm install -g cordova
+sudo npm install -g ionic
 npm install
 bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/HRRB-Oxygen/HRRB-Oxygen/issues)
 
 
 ## Contributing

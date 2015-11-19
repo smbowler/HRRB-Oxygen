@@ -3,10 +3,8 @@
       <h1 class="title">Bus It Baby!</h1>
 </ion-header-bar>
   <ion-content ng-controller="MapController" ng-init="init()">
+    <!-- map has to have size or it will not show up -->
     <div id="map" style="height:300px;width:100%;" align="middle"></div>
-    <!-- <br>
-  	 <p align="middle">WHERE THE TRACKING MAPS WOULD GO</p>
-    <br> -->
 
   	<div class="locations">
       <div class="list">
@@ -15,6 +13,7 @@
           <div class="input-label">
           Direction
           </div>
+          <!-- $scope.data.sel will update on each change, and call options function -->
           <select name="selection" ng-model="data.sel" ng-change="options()" class="direction">
             <option selected>Going to W. Farms Rd</option>
             <option>Going to Wash. Heights</option>
@@ -24,7 +23,7 @@
           <div class="input-label">
           Stop
           </div>
-          <select class="stop" ng-options="name in data.names"></option>
+          <select class="stop" ng-model="data.stop" ng-change="getLoc()"></option>
           </select>
         </label>
 

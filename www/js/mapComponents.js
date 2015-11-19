@@ -7,6 +7,7 @@ angular.module('busitbaby')
     init: function(){
       this.populateMap();
       this.renderBus();
+      this.setOptions();
     },
 
     populateMap: function(){
@@ -20,16 +21,18 @@ angular.module('busitbaby')
     },
 
     renderBus: function(){
-      var ref = new Firbase('https://publicdata-transit.firebaseio.com/bronx');
+      var that = this;
+      var ref = new Firebase('https://publicdata-transit.firebaseio.com/bronx');
       //get data for bus #266
-      var bus = ref.child('vehicles').child('266');
+      var bus = ref.child('vehicles').child('300');
       //get initial location
       bus.once('value', function(snap){
         var it = snap.val();
+        console.log(it)
         var latlng = new google.maps.LatLng(it.lat,it.lon);
-        this.marker = new google.maps.Marker({
+        that.marker = new google.maps.Marker({
           position: latlng,
-          map: this.map
+          map: that.map
         })
       });
       //update location
@@ -42,18 +45,39 @@ angular.module('busitbaby')
     },
 
     setOptions: function(){
-      $.ajax({
-        
-      })
-    }
+      $('.stop').empty();
+      if($('.direction').val() === 'Going to Wash. Heights'){
+        $.getJSON('../json/stop1.json', function(data){
+          data.stops.forEach(function(stop){
+            $('.stop').append('<option>' + stop.name + '</option>')
+          })
+        })
+      } else if($('.direction').val() === 'Going to W. Farms Rd'){
+        $.getJSON('../json/stop2.json', function(data){
+          data.stops.forEach(function(stop){
+            $('.stop').append('<option>' + stop.name + '</option>')
+          })
+        })
+      }
+    },
+
+
+  }
+    return obj;
+  }])
+
+.controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
+  $scope.init = function(){
+    fireMap.init();
   }
 
+  $scope.data = {
+    sel: 'Going to W. Farms Rd',
+    stop: ''
+  }
 
-
-
-
-
-
-
+  $scope.options = function(){
+    fireMap.setOptions();
+  }
 
 }])

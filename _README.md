@@ -1,6 +1,6 @@
 # Bus It Baby!
 
-> An awesome mobile app that eliminates the chances of you missing your stop while riding on a bus. Select your starting point and end point and Bus It Baby uses geolocation and Google Maps to track your location and send you an alarm once you've reached a predetermined distance from your bus stop. This frees you to read, chat, or take a nap on the bus without fear of missing your stop. Bus It Baby!
+> An awesome mobile app that eliminates the chances of you missing your stop while riding on a bus. 
 
 ## Team
 
@@ -20,7 +20,10 @@
 
 ## Usage
 
-> Some usage instructions
+> 1. Select your starting point and end point.
+> 2. Choose the how far from your stop you want to be notified.
+> 3. Choose your alarm: sound or vibrate.
+> 4. Take a nap and Bus It Baby will notify you once you've reached the point before your stop.
 
 ## Requirements
 

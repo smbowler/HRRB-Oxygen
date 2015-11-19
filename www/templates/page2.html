@@ -2,23 +2,33 @@
 <ion-header-bar class="bar-positive">
       <h1 class="title">Bus It Baby!</h1>
 </ion-header-bar>
-  <ion-content>
-    <br>
-  	 <p align="middle">WHERE THE TRACKING MAPS WOULD GO</p>
-    <br>
+  <ion-content ng-controller="MapController" ng-init="init()">
+    <!-- map has to have size or it will not show up -->
+    <div id="map" style="height:300px;width:100%;" align="middle"></div>
 
   	<div class="locations">
-            <div class="list">
-            <label class="item item-input">
-              <span class="input-label">Start</span>
-              <input type="text">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Destination</span>
-              <input type="text">
-            </label>
+      <div class="list">
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+          Direction
           </div>
-     </div>
+          <!-- $scope.data.sel will update on each change, and call options function -->
+          <select name="selection" ng-model="data.sel" ng-change="options()" class="direction">
+            <option selected>Going to W. Farms Rd</option>
+            <option>Going to Wash. Heights</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+          Stop
+          </div>
+          <select class="stop" ng-model="data.stop" ng-change="getLoc()"></option>
+          </select>
+        </label>
+
+      </div>
+    </div>
     <br>
     <div style="text-align: center">
     <a class="button" href="#/page3" >Next</a>

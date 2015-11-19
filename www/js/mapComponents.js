@@ -76,14 +76,15 @@ angular.module('busitbaby')
     return obj;
   }])
 
-.controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
+.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', function($scope, fireMap){
   $scope.init = function(){
     fireMap.init();
   }
 
   $scope.data = {
     sel: 'Going to W. Farms Rd',
-    stop: ''
+    stop: '',
+    miles: 'Miles'
   }
 
   $scope.options = function(){
@@ -95,10 +96,14 @@ angular.module('busitbaby')
     for(var i = 0; i < stopArr.length; i++){
       var stop = stopArr[i];
       if(stop.name === $scope.data.stop){
+        var end = {latitude: stop.latitude, longitude: stop.longitude}
+        //mock user start data
+        var startMock = {latitude: 40.827072,
+        longitude: -73.889633}
+        isWithinRadius($('.distance').val(), end, startMock, function(){
+          console.log('holla')
+        })
 
-        //call location function
-        console.log(stop.latitude)
-        console.log(stop.longitude)
       }
     }
   }

@@ -14,7 +14,6 @@ angular.module('busitbaby.controllers', [])
 .controller('SigninCtrl', function($scope){
 	console.log("sign in page");
 
-
 })
 .controller('SignupCtrl', function($scope){
 	console.log("sign up page");

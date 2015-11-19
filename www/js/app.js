@@ -13,7 +13,6 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers'])
 })
 
 
-
 .config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
 

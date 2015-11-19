@@ -1,8 +1,7 @@
 angular.module('busitbaby.services', [])
 
 .factory("Auth", function($firebaseAuth) {
-	var endpoint = 'https://busitbaby.firebaseio.com/users';
-  var usersRef = new Firebase(endpoint);
+  var usersRef = new Firebase('https://busitbaby.firebaseio.com/users');
   return $firebaseAuth(usersRef);
 })
 

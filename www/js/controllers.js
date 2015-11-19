@@ -110,8 +110,11 @@ angular.module('busitbaby.controllers', [])
 				var userMock = {latitude: 40.827072, longitude: -73.889633}
         //call location function
 				console.log($scope.data.miles)
-				isWithinRadius($scope.data.miles, end, userMock, function(){
-					console.log('hi')
+				isWithinRadius($scope.data.miles, end, userMock, function(bool){
+					var audio = new Audio('../music/firepager.mp3');
+					if(bool){
+						audio.play();
+					}
 				})
 
       }

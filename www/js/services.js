@@ -14,6 +14,7 @@ angular.module('busitbaby.services', [])
       this.populateMap();
       this.renderBus();
       this.setOptions();
+      this.addDraggableMarker();
     },
 
     populateMap: function(){
@@ -76,6 +77,20 @@ angular.module('busitbaby.services', [])
       }
     },
 
+    addDraggableMarker: function(){
+      // var image = ''; // Use your own image
+      var marker = new google.maps.Marker({
+        position: {lat: 40.849462, lng: -73.882599 },
+        map: this.map,
+        // icon: image,
+        draggable: true
+      });
+
+      marker.addListener('dragend', function() {
+        var coords = marker.getPosition();
+        $scope.getLoc(coords);
+      });
+    }
 
   }
     return obj;

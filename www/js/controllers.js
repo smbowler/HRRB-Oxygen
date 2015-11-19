@@ -101,16 +101,22 @@ angular.module('busitbaby.controllers', [])
     fireMap.setOptions();
   }
 
-  $scope.getLoc = function(){
+  $scope.getLoc = function(optionalCoords){
     var stopArr = fireMap.data.stops;
+    var coords = {};
+    if( optionalCoords ){
+      coords.latitude = optionalCoords.lat,
+      coords.longitude = optionalCoords.lng;
+    } else {
+      coords = {latitude: 40.827072, longitude: -73.889633};
+    }
     for(var i = 0; i < stopArr.length; i++){
       var stop = stopArr[i];
       if(stop.name === $scope.data.stop){
 				var end = {latitude: stop.latitude, longitude: stop.longitude}
-				var userMock = {latitude: 40.827072, longitude: -73.889633}
         //call location function
 				console.log($scope.data.miles)
-				isWithinRadius($scope.data.miles, end, userMock, function(){
+				isWithinRadius($scope.data.miles, end, coords, function(){
 					console.log('hi')
 				})
 

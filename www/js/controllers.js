@@ -39,53 +39,59 @@ angular.module('busitbaby.controllers', [])
 
 
 })
-.controller('facebookCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin) {
-
-  // Get a reference to the Firebase
-  var firebaseRef = new Firebase("https://busitbaby.firebaseio.com/");
-
-  // Create a Firebase Simple Login object
-  $scope.auth = $firebaseSimpleLogin(firebaseRef);
-
-  // Initially set no user to be logged in
-  $scope.user = null;
-
-  // Logs a user in with inputted provider
-  $scope.login = function(provider) {
-    console.log("I am logging in");
-    $scope.auth.$login(provider);
+.controller('loginCtrl', function($scope, Auth) {
+  $scope.login = function(authMethod) {
+    Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+    }).catch(function(error) {
+      if (error.code === 'TRANSPORT_UNAVAILABLE') {
+        Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+        });
+      } else {
+        console.log(error);
+      }
+    });
   };
 
-  // Logs a user out
-  $scope.logout = function() {
-    console.log("I am logging out");
-    $scope.auth.$logout();
-  };
-
-  // Upon successful login, set the user object
-  $rootScope.$on("$firebaseSimpleLogin:login", function(event, user) {
-    $scope.user = user;
+   Auth.$onAuth(function(authData) {
+    if (authData === null) {
+      console.log('Not logged in yet');
+    } else {
+      console.log('Logged in as', authData.uid);
+    }
+    // This will display the user's name in our view
+    $scope.authData = authData;
   });
-
-  // Upon successful logout, reset the user object
-  $rootScope.$on("$firebaseSimpleLogin:logout", function(event) {
-    $scope.user = null;
-  });
-
-  // Log any login-related errors to the console
-  $rootScope.$on("$firebaseSimpleLogin:error", function(event, error) {
-    console.log("Error logging user in: ", error);
-  });
-
-  // Upon successful logout, reset the user object and clear cookies
-  // $rootScope.$on("$firebaseSimpleLogin:logout", function(event) {
-  //   $scope.user = null;
-  //   window.cookies.clear(function() {
-  //     console.log("Cookies cleared!");
-  //   });
-  // });
-
 })
+
+.controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
+  $scope.init = function(){
+    fireMap.init();
+  }
+
+  $scope.data = {
+    sel: 'Going to W. Farms Rd',
+    stop: ''
+  }
+
+  $scope.options = function(){
+    fireMap.setOptions();
+  }
+
+  $scope.getLoc = function(){
+    var stopArr = fireMap.data.stops;
+    for(var i = 0; i < stopArr.length; i++){
+      var stop = stopArr[i];
+      if(stop.name === $scope.data.stop){
+
+        //call location function
+        console.log(stop.latitude)
+        console.log(stop.longitude)
+      }
+    }
+  }
+
+}])
+
 
 
 

@@ -86,6 +86,35 @@ angular.module('busitbaby.controllers', [])
   // });
 
 })
+.controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
+  $scope.init = function(){
+    fireMap.init();
+  }
+
+  $scope.data = {
+    sel: 'Going to W. Farms Rd',
+    stop: ''
+  }
+
+  $scope.options = function(){
+    fireMap.setOptions();
+  }
+
+  $scope.getLoc = function(){
+    var stopArr = fireMap.data.stops;
+    for(var i = 0; i < stopArr.length; i++){
+      var stop = stopArr[i];
+      if(stop.name === $scope.data.stop){
+
+        //call location function
+        console.log(stop.latitude)
+        console.log(stop.longitude)
+      }
+    }
+  }
+
+}])
+
 
 
 

@@ -62,12 +62,9 @@ angular.module('busitbaby.controllers', [])
     $scope.authData = authData;
   });
 })
-<<<<<<< HEAD
 
-.controller('MapController', ['$scope', 'fireMap', function($scope, fireMap){
-=======
 .controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', function($scope, fireMap, isWithinRadius){
->>>>>>> 0e56d5d85d030a77d2d94ae092f7b9113ef8a131
+
   $scope.init = function(){
     fireMap.init();
   }

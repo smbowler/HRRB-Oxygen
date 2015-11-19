@@ -22,6 +22,7 @@ angular.module('busitbaby.services', [])
       var mapOptions = {
         zoom: 12,
         center: myLatlng,
+
       };
       this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
       var transitLayer = new google.maps.TransitLayer();
@@ -41,7 +42,8 @@ angular.module('busitbaby.services', [])
         var latlng = new google.maps.LatLng(it.lat,it.lon);
         that.marker = new google.maps.Marker({
           position: latlng,
-          map: that.map
+          map: that.map,
+          icon: '../img/png/bus21.png'
         })
       });
       //update location on change to bus

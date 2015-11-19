@@ -86,7 +86,7 @@ angular.module('busitbaby.controllers', [])
   // });
 
 })
-.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', function($scope, fireMap, isWithinRadius){
+.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', '$location', function($scope, fireMap, isWithinRadius, $location){
   $scope.init = function(){
     fireMap.init();
   }
@@ -113,6 +113,7 @@ angular.module('busitbaby.controllers', [])
 				isWithinRadius($scope.data.miles, end, userMock, function(bool){
 					var audio = new Audio('../music/firepager.mp3');
 					if(bool){
+						$location.path('/page4')
 						audio.play();
 					}
 				})

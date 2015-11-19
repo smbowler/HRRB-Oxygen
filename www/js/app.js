@@ -1,4 +1,4 @@
-angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'firebase', 'trackingModule'])
+angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busitbaby.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -11,7 +11,6 @@ angular.module('busitbaby', ['ionic', 'busitbaby.controllers', 'firebase', 'trac
     }
   });
 })
-
 
 
 .config(function($stateProvider, $urlRouterProvider){

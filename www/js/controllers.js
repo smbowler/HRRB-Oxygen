@@ -25,7 +25,7 @@ angular.module('busitbaby.controllers', [])
   $scope.people = [
   {name: 'Alon Robinson', title: 'Product Owner', image: '/img/alon.png', bio: 'Reclusive billionaire/JS maniac'},
   {name: 'David Lee', title: 'Scrum God', image: '/img/david.png', bio: 'Renounced his throne as peptalk king'},
-  {name: 'Mykia Smith', title: 'Scrum Goddess', image: '/img/mykia.png', bio: 'Got you covered if you need mood music'},
+  {name: 'Mykia Smith', title: 'Scrum Goddess', image: '/img/mykia.png', bio: 'Has a degree in merge conflict'},
   {name: 'Hera Kim', title: 'A Person', image: '/img/hera.png', bio: 'A sprightly person'}
   ];
 

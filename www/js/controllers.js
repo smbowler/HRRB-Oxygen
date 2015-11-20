@@ -66,6 +66,7 @@ angular.module('busitbaby.controllers', [])
 
   $scope.init = function(){
     fireMap.init();
+		fireMap.addMarkerListener($scope)
   }
 
   $scope.data = {
@@ -93,7 +94,7 @@ angular.module('busitbaby.controllers', [])
 				var end = {latitude: stop.latitude, longitude: stop.longitude}
         //call location function
 				console.log($scope.data.miles)
-				isWithinRadius($scope.data.miles, end, userMock, function(bool){
+				isWithinRadius($scope.data.miles, end, coords, function(bool){
 					var audio = new Audio('../music/firepager.mp3');
 					if(bool){
 						$location.path('/page4')

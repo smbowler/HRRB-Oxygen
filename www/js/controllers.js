@@ -62,8 +62,7 @@ angular.module('busitbaby.controllers', [])
     $scope.authData = authData;
   });
 })
-
-.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', function($scope, fireMap, isWithinRadius){
+.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', '$location', function($scope, fireMap, isWithinRadius, $location){
 
   $scope.init = function(){
     fireMap.init();
@@ -94,8 +93,13 @@ angular.module('busitbaby.controllers', [])
 				var end = {latitude: stop.latitude, longitude: stop.longitude}
         //call location function
 				console.log($scope.data.miles)
-				isWithinRadius($scope.data.miles, end, coords, function(){
-					console.log('hi')
+				isWithinRadius($scope.data.miles, end, userMock, function(bool){
+					var audio = new Audio('../music/firepager.mp3');
+					if(bool){
+						$location.path('/page4')
+						audio.play();
+					}
+
 				})
 
       }

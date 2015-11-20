@@ -83,7 +83,6 @@ angular.module('busitbaby.controllers', [])
     var stopArr = fireMap.data.stops;
     var coords = {};
     if( optionalCoords ){
-			console.log('opt: ', optionalCoords)
       coords.latitude = optionalCoords.lat(),
       coords.longitude = optionalCoords.lng();
     } else {

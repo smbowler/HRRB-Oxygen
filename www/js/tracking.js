@@ -18,7 +18,6 @@ angular.module('trackingModule', []).
   factory('isWithinRadius', ['distance', function(distance) {
     var usingGeolocation = false;
     return function(alertRadius, endCoords, startCoords, next) {
-      console.log(alertRadius,endCoords,startCoords)
       var callback = function(startCoords) {
         if( usingGeolocation ){
           startCoords = startCoords.coords;

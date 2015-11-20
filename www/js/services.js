@@ -16,7 +16,6 @@ angular.module('busitbaby.services', [])
       this.populateMap();
       this.renderBus();
       this.setOptions();
-      this.addDraggableMarker();
     },
 
     populateMap: function(){
@@ -81,7 +80,7 @@ angular.module('busitbaby.services', [])
       }
     },
 
-    addDraggableMarker: function(){
+    addDraggableMarker: function(scope){
       var that = this;
       // var image = ''; // Use your own image
       personMarker = new google.maps.Marker({
@@ -92,13 +91,10 @@ angular.module('busitbaby.services', [])
       });
       personMarker.addListener('drag', function() {
         that.coords = personMarker.getPosition();
-
+        scope.getLoc(that.coords);
       });
     },
 
-    addMarkerListener: function(scope){
-      scope.getLoc(this.coords);
-    }
 
   }
     return obj;

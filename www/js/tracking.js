@@ -6,18 +6,19 @@ angular.module('trackingModule', []).
   }]).
   factory('distance', function() {
     return function(lat1, lon1, lat2, lon2){
-      var p = 0.017453292519943295;    // Math.PI / 180
-      var c = Math.cos;
-      var a = 0.5 - c((lat2 - lat1) * p)/2 +
-              c(lat1 * p) * c(lat2 * p) *
-              (1 - c((lon2 - lon1) * p))/2;
-      var dist = 2 * 3959 * Math.asin(Math.sqrt(a)); // 2 * R; R = 3959 miles
-      return (1.9 * dist > 2) ? dist : dist * 1.9;
+      var myPos = new google.maps.LatLng(lat1, lon1);
+      var yoPos = new google.maps.LatLng(lat2, lon2);
+      var a = google.maps.geometry
+                 .spherical
+                 .computeDistanceBetween(myPos,yoPos) * 0.00062
+      console.log('dist: ', a)
+      return a;
     }
   }).
   factory('isWithinRadius', ['distance', function(distance) {
     var usingGeolocation = false;
     return function(alertRadius, endCoords, startCoords, next) {
+      console.log(alertRadius,endCoords,startCoords)
       var callback = function(startCoords) {
         if( usingGeolocation ){
           startCoords = startCoords.coords;

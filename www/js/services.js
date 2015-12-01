@@ -1,7 +1,8 @@
 angular.module('busitbaby.services', [])
 
 .factory("Auth", function($firebaseAuth) {
-  var usersRef = new Firebase('https://busitbaby.firebaseio.com/users');
+  //Shan >> changed line below, passing the url for my deployment of firebase into Firebase constructor
+  var usersRef = new Firebase('https://hrrb-oxygen.firebaseio.com');
   return $firebaseAuth(usersRef);
 })
 

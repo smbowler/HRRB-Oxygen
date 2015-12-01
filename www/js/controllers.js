@@ -39,9 +39,11 @@ angular.module('busitbaby.controllers', [])
 
 
 })
-.controller('loginCtrl', function($scope, Auth) {
+.controller('loginCtrl', function($scope, Auth, $location) {
   $scope.login = function(authMethod) {
-    Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+    //Shan >> changed line below to use authWithOAuthPopup
+    Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+      //TODO - Save this auth data to the DB
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
         Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
@@ -57,6 +59,7 @@ angular.module('busitbaby.controllers', [])
       console.log('Not logged in yet');
     } else {
       console.log('Logged in as', authData.uid);
+      $location.path('/page2');
     }
     // This will display the user's name in our view
     $scope.authData = authData;

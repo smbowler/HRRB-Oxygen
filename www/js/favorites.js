@@ -48,8 +48,8 @@ var routes = db.child('routes');
 // Start and end arguments should be objects with .long and .lat properties
 var saveRoute = function(user, routeName, start, end) {
   routes.child(user).push({
-    'name': routeName,
     'start': start,
+    'name': routeName,
     'end': end
   });
 };

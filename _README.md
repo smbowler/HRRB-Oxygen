@@ -4,9 +4,15 @@
 
 ## Team
 
+### Greenfield Team:
   - __Product Owner__: Alon Robinson
   - __Scrum Master__: David Lee
   - __Development Team Members__: Hera Kim, Mykia Smith
+
+### Legacy Team:
+  - __Product Owner__: Alice Green
+  - __Scrum Master__: Shan Batla
+  - __Development Team Members__: Shan Batla, Alice Green, Sam Bowler, Peter Park
 
 ## Table of Contents
 
@@ -52,6 +58,23 @@ bower install
 ### Roadmap
 
 View the project roadmap [here](https://github.com/HRRB-Oxygen/HRRB-Oxygen/issues)
+
+- In-progress features:
+  - Sign-in (Firebase Authentication)
+    - Facebook
+  - Save User to Database (Express and MongoDB)
+    - Save User Name
+    - Save User Destinations
+      - Home
+      - School  
+  - Save User Important Contacts
+    - Contact Name, Phone Number, Message
+      - Ex: Mom, 555-5555, Just got off the bus, walking home. Love you to the moon!
+  - App Functionality
+    - Visualize User Location (blue dot)
+    - Alarm queued from proximity to User’s saved Destinations
+    - Prompt to send pre-loaded text to Important Contacts
+
 
 
 ## Contributing

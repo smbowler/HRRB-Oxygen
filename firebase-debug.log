@@ -1,0 +1,36 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      node /usr/local/bin/firebase deploy
+[debug] Platform:     darwin
+[debug] Node Version: v0.12.7
+[debug] Time:         Mon Nov 30 2015 22:53:14 GMT-0800 (PST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/HRRB-Oxygen/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/HRRB-Oxygen/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'HRRB-Oxygen'...
+[info] 
+[info] i  deploying hosting
+[info] i  preparing www directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/firebase/HRRB-Oxygen/uploads/-K4RJG3-mPhUWFGB2Fbg?token=XXX&fileCount=152&message= 
+[debug] <<< HTTP RESPONSE 200
+[debug] ----------------------------------------------------------------------
+[debug] Command:      node /usr/local/bin/firebase deploy
+[debug] Platform:     darwin
+[debug] Node Version: v0.12.7
+[debug] Time:         Mon Nov 30 2015 23:15:03 GMT-0800 (PST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/HRRB-Oxygen/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/firebase/HRRB-Oxygen/token?token=XXX 
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'HRRB-Oxygen'...
+[info] 
+[info] i  deploying hosting
+[info] i  preparing www directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/firebase/HRRB-Oxygen/uploads/-K4ROFd2sIalZAezo4h4?token=XXX&fileCount=152&message= 
+[debug] <<< HTTP RESPONSE 200

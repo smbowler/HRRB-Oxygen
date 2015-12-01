@@ -41,7 +41,8 @@ angular.module('busitbaby.controllers', [])
 })
 .controller('loginCtrl', function($scope, Auth) {
   $scope.login = function(authMethod) {
-    Auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+    //Shan >> changed line below to use authWithOAuthPopup
+    Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
         Auth.$authWithOAuthPopup(authMethod).then(function(authData) {

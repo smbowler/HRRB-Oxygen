@@ -21,15 +21,30 @@ angular.module('busitbaby.services', [])
 
     populateMap: function(){
       //map of Bronx,NY
-      var myLatlng = new google.maps.LatLng(40.8373, -73.8860)
-      var mapOptions = {
-        zoom: 12,
-        center: myLatlng,
+      navigator.geolocation.watchPosition(function(position) {
+        var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        //var homeLatlng = new google.maps.LatLng(29.936253, -90.084396);
+        var mapOptions = {
+          zoom: 14,
+          center: myLatlng,
+        };
+      
+        this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(this.map);
 
-      };
-      this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      var transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(this.map);
+        var marker = new google.maps.Marker({
+          position:myLatlng,
+          map: this.map,
+          title: "You are here!"
+        })
+
+        // var homeMarker = new google.maps.Marker({
+        //   position:myLatlng,
+        //   map: this.map,
+        //   title: "You are here!"
+        // })
+      })
     },
 
     renderBus: function(){

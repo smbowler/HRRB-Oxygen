@@ -1,14 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var User = require('./users/usermodel');
+var User = require('.server/users/usermodel');
 
 //express config
 var app = express();
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + 'www'));
 
 var port = process.env.PORT || 3000;
+
 app.listen(port);
 console.log('listening on port:', port);
 

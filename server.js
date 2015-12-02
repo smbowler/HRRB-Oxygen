@@ -5,9 +5,10 @@ var User = require('./server/users/usermodel');
 
 //express config
 var app = express();
+app.use(express.static(__dirname + '/www'));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/www'));
+
 
 var port = process.env.PORT || 3000;
 
@@ -15,7 +16,7 @@ app.listen(port);
 console.log('listening on port:', port);
 
 //connect mongo DB
-var mongoURI = process.env.mongoURI || 'mongodb://localhost/BusitBaby_db';
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/BusitBaby_db';
 
 mongoose.connect(mongoURI);
 

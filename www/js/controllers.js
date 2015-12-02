@@ -19,6 +19,10 @@ angular.module('busitbaby.controllers', [])
 	console.log("sign up page");
 })
 
+.controller('WhotoMessageCtrl', function($scope){
+  console.log("whotomessage page");
+})
+
 .controller('AboutCtrl', function($scope){
   console.log("about page!! our information goes here");
 

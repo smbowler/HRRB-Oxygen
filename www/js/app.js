@@ -51,6 +51,11 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 			templateUrl: "templates/about.html",
 			controller: 'AboutCtrl'
 		})
+		.state('whotomessage', {
+			url: "/whotomessage",
+			templateUrl: "templates/whotomessage.html",
+			controller: 'WhotoMessageCtrl'
+		})
 		// .state('record', {
 		// 	url: "/record",
 		// 	templateUrl: "templates/record.html",

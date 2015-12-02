@@ -23,10 +23,10 @@ angular.module('busitbaby.controllers', [])
   console.log("about page!! our information goes here");
 
   $scope.people = [
-  {name: 'Alon Robinson', title: 'Product Owner', image: '/img/alon.png', bio: 'Reclusive billionaire/JS maniac'},
-  {name: 'David Lee', title: 'Scrum God', image: '/img/david.png', bio: 'Renounced his throne as peptalk king'},
-  {name: 'Mykia Smith', title: 'Scrum Goddess', image: '/img/mykia.png', bio: 'Has a degree in merge conflict'},
-  {name: 'Hera Kim', title: 'A Person', image: '/img/hera.png', bio: 'A sprightly person'}
+  {name: 'Alice Green', title: 'Product Owner', image: '/img/alice.jpeg', bio: 'I like robots.'},
+  {name: 'Shan Batla', title: 'Scrum Master', image: '/img/shan.jpeg', bio: 'I like git work flow.'},
+  {name: 'Sam Bowler', title: 'Developer', image: '/img/sam.jpeg', bio: 'I like hats with maple leaves.'},
+  {name: 'Peter Park', title: 'Developer', image: '/img/peter.jpeg', bio: 'I like touching old statues.'}
   ];
 
 })

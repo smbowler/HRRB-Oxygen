@@ -6,14 +6,20 @@ angular.module('busitbaby.services', [])
   return $firebaseAuth(usersRef);
 })
 
+<<<<<<< 6b5af8a1b6394cb07941c316a91f92d0be9ba108
 
 .factory('UserService', function($rootScope, Auth, $http, $q){
 
+=======
+.factory('UserService', function($rootScope, Auth){
+  var geocoder = new google.maps.Geocoder();
+>>>>>>> feat/geocode - working geocode feature
   var user = {
     displayName: '',
     emailAddress: '',
     profileImageURL: '',
     destination: '',
+    destgeocode: '',
     previousLocation: [],
     contact: {},
     miles: 1,
@@ -39,6 +45,27 @@ angular.module('busitbaby.services', [])
       'destination' : destination
     });
     console.log("user info has been updated", user);
+    getLatLong(user.destination);
+  };
+
+  var getLatLong = function(destination){
+    //geolocation algorithm
+    //request to google geolocation URL
+    //return lat & long
+    geocoder.geocode( { 'address': destination}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        // user.destgeocode = {
+        //   coords: results[0].geometry.location
+        // };
+        user.destgeocode = results[0].geometry.location;
+        
+        console.log(user.destgeocode);
+        console.log("here are the lat and long:" + results[0].geometry.location);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+    //console.log(destination);
   };
 
   var addContact = function(contact){
@@ -77,7 +104,7 @@ angular.module('busitbaby.services', [])
   };
 })
 
-.factory('fireMap', ['$firebaseObject', '$rootScope', function($firebaseObject, $rootScope){
+.factory('fireMap', ['$firebaseObject', '$rootScope', 'UserService', function($firebaseObject, $rootScope, UserService){
   
   var myPos = {}  
 
@@ -120,8 +147,9 @@ angular.module('busitbaby.services', [])
 
         /* multiple Markers */
         var currentPos = ['currentPos',position.coords.latitude,position.coords.longitude];
-        var destinationPos = ['destinationPos',position.coords.latitude - 0.05 ,position.coords.longitude - 0.05];
+        var destinationPos = ['destinationPos',UserService.getUser().destgeocode.lat(),UserService.getUser().destgeocode.lng()];
         var markers = [currentPos, destinationPos];
+        console.log(UserService.getUser().destgeocode.lat());
 
         // Loop through our array of markers & place each one on the map  
         for( i = 0; i < markers.length; i++ ) {

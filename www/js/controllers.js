@@ -13,16 +13,30 @@ angular.module('busitbaby.controllers', [])
 })
 .controller('SigninCtrl', function($scope){
 	console.log("sign in page");
-
 })
 .controller('SignupCtrl', function($scope){
 	console.log("sign up page");
 })
+.controller('LogoutCtrl', function($scope, Auth, $location){
+  Auth.$unauth();
+  $location.path('main');
+})
+.controller('WhereCtrl', function($scope, UserService){
+  var where = this;
+  
+  $scope.$on('evtUpdateUserInfo', function(){
+    console.log(UserService);
+    where.displayName = UserService.displayName;
+    console.log('displayName',where.displayName);
+  });
 
+})
+.controller('WhenCtrl', function($scope, UserService){
+  var when = this;
+})
 .controller('WhotoMessageCtrl', function($scope){
   console.log("whotomessage page");
 })
-
 .controller('AboutCtrl', function($scope){
   console.log("about page!! our information goes here");
 
@@ -43,11 +57,20 @@ angular.module('busitbaby.controllers', [])
 
 
 })
-.controller('loginCtrl', function($scope, Auth, $location) {
+.controller('loginCtrl', function($scope, Auth, $location, UserService) {
+
   $scope.login = function(authMethod) {
     //Shan >> changed line below to use authWithOAuthPopup
     Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
       //TODO - Save this auth data to the DB
+      //save user info
+      console.log(authData);
+      UserService.displayName = authData.facebook.displayName;
+      UserService.profileImageURL = authData.facebook.profileImageURL;
+      UserService.broadcastUserInfo();
+      //save user info to db
+      
+
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
         Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
@@ -58,12 +81,12 @@ angular.module('busitbaby.controllers', [])
     });
   };
 
-   Auth.$onAuth(function(authData) {
+  Auth.$onAuth(function(authData) {
     if (authData === null) {
       console.log('Not logged in yet');
     } else {
       console.log('Logged in as', authData.uid);
-      $location.path('/page2');
+      $location.path('/where');
     }
     // This will display the user's name in our view
     $scope.authData = authData;

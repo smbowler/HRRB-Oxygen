@@ -1,8 +1,11 @@
-<div class = "whenAlert">
-<ion-header-bar class="bar-positive">
-  <h1 class="title">Bus It Baby!</h1>
-</ion-header-bar>
-  <ion-content ng-controller="MapController" ng-init="init()">
+<ion-view view-title="WhenAlert">
+
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Bus It Baby!</h1>
+  </ion-header-bar>
+  
+  <ion-content>
+  <br><br>
     <!-- map has to have size or it will not show up -->
     <h2 style="padding: 10%; text-align: center">How Close is Close Enough?</h2>
     <p style="padding: 5%">When do you want to be alerted that you are almost at your destination?</p>
@@ -11,7 +14,7 @@
         <div class="input-label">
         Distance
         </div>
-        <select class="distance" ng-model="data.miles" ng-change="getLoc()">
+        <select class="distance">
           <option selected disabled>Miles</option>
           <option>0.5</option>
           <option>1</option>
@@ -21,7 +24,8 @@
     </div>
     <br>
     <div style="text-align: center">
-    <a class="button" href="#/page3" >Next</a>
+    <a class="button" ui-sref="whotomessage" >Next</a>
     </div>
   </ion-content>
-</div>
+
+</ion-view>

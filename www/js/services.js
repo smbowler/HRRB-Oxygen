@@ -6,6 +6,23 @@ angular.module('busitbaby.services', [])
   return $firebaseAuth(usersRef);
 })
 
+.factory('UserService', function($rootScope){
+  var userService = {
+    displayName: '',
+    emailAddress: '',
+    profileImageURL: '',
+    destination: '',
+    favorite: {},
+    contacts: {}
+  }
+
+  userService.broadcastUserInfo = function () {
+    $rootScope.$broadcast('evtUpdateUserInfo')
+  };
+
+  return userService;
+})
+
 .factory('fireMap', ['$firebaseObject', function($firebaseObject){
   var obj = {
     map: null,

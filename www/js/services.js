@@ -69,32 +69,28 @@ angular.module('busitbaby.services', [])
     },
 
     populateMap: function(){
-      //map of Bronx,NY
-      navigator.geolocation.watchPosition(function(position) {
-        var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        //var homeLatlng = new google.maps.LatLng(29.936253, -90.084396);
-        var mapOptions = {
-          zoom: 14,
-          center: myLatlng,
-        };
-      
-        this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(this.map);
+       //map of Bronx,NY
+      var myLatlng = new google.maps.LatLng(29.951066, -90.071532)
+      var mapOptions = {
+        zoom: 12,
+        center: myLatlng,
 
-        var marker = new google.maps.Marker({
+      };
+      this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(this.map);
+
+       this.marker = new google.maps.Marker({
           position:myLatlng,
           map: this.map,
           title: "You are here!"
         })
 
-        // var homeMarker = new google.maps.Marker({
-        //   position:myLatlng,
-        //   map: this.map,
-        //   title: "You are here!"
-        // })
       })
+
     },
+
+
 
     renderBus: function(){
       //save context
@@ -119,7 +115,6 @@ angular.module('busitbaby.services', [])
           this.marker.setPosition(new google.maps.LatLng(snap.val().lat,snap.val().lon));
         }
       })
-
     },
 
     setOptions: function(){
@@ -146,10 +141,10 @@ angular.module('busitbaby.services', [])
     },
 
     addDraggableMarker: function(scope){
-      var that = this;
+       var that = this;
       // var image = ''; // Use your own image
       personMarker = new google.maps.Marker({
-        position: {lat: 40.849462, lng: -73.882599 },
+        position: {lat:29.951066, lng: -90.071532},
         map: this.map,
         icon: '../img/png/shopper1.png',
         draggable: true
@@ -159,8 +154,6 @@ angular.module('busitbaby.services', [])
         scope.getLoc(that.coords);
       });
     },
-
-
   }
     return obj;
   }])

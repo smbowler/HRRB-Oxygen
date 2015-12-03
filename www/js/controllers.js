@@ -128,7 +128,7 @@ angular.module('busitbaby.controllers', [])
 
   $scope.init = function(){
     fireMap.init();
-		fireMap.addDraggableMarker($scope)
+		fireMap.addDraggableMarker($scope);
   }
 
   $scope.data = {
@@ -148,24 +148,22 @@ angular.module('busitbaby.controllers', [])
       coords.latitude = optionalCoords.lat(),
       coords.longitude = optionalCoords.lng();
     } else {
-      coords = {latitude: 40.827072, longitude: -73.889633};
+      coords = {latitude: 29.951066, longitude: -90.071532};
     }
-    for(var i = 0; i < stopArr.length; i++){
-      var stop = stopArr[i];
-      if(stop.name === $scope.data.stop){
-				var end = {latitude: stop.latitude, longitude: stop.longitude}
+    
+      
+        var end = {latitude: 29.951066, longitude: -90.071532};
         //call location function
-				isWithinRadius($scope.data.miles, end, coords, function(bool){
-					var audio = new Audio('../music/firepager.mp3');
-					if(bool){
-						$location.path('/page4')
-						audio.play();
-					}
+        isWithinRadius($scope.data.miles, end, coords, function(bool){
+          var audio = new Audio('../music/firepager.mp3');
+          if(bool){
+            $location.path('/page4')
+            audio.play();
+          }
 
-				})
+        })
 
-      }
-    }
+      
   }
 
 }])

@@ -1,21 +1,22 @@
 <ion-header-bar class="bar-positive">
-      <h1 class="title">About</h1>
+  <button class="button" ui-sref="map">GoBack</button>
+  <h1 class="title">About</h1>
 </ion-header-bar>
 
 <ion-content>
 
-      <div class="list">
+  <div class="list">
 
-        <div ng-repeat="item in people" 
-      
-           class="item item-thumbnail-left">
+    <div ng-repeat="item in people" 
+  
+       class="item item-thumbnail-left">
 
-          <img ng-src="{{ item.image }}">
-          <h2>{{ item.name }} - {{ item.title }}</h2>
-          <br>
-          <h4>{{ item.bio }}</h4>
-        </div>
+      <img ng-src="{{ item.image }}">
+      <h2>{{ item.name }} - {{ item.title }}</h2>
+      <br>
+      <h4>{{ item.bio }}</h4>
+    </div>
 
-      </div>
+  </div>
 
    </ion-content>

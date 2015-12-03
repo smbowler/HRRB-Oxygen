@@ -14,7 +14,7 @@ angular.module('busitbaby.services', [])
     profileImageURL: '',
     destination: '',
     previousLocation: [],
-    contacts: []
+    contact: {}
 
   };
 
@@ -39,11 +39,12 @@ angular.module('busitbaby.services', [])
   };
 
   var addContact = function(contact){
-    user.contacts.push({
+    user.contact = {
       'name': contact.name,
       'number': contact.number,
       'message': contact.message
-    });
+    };
+
     console.log("a new contact has been added", user);
   };
 
@@ -55,7 +56,10 @@ angular.module('busitbaby.services', [])
   };
 })
 
-.factory('fireMap', ['$firebaseObject', function($firebaseObject){
+.factory('fireMap', ['$firebaseObject', '$rootScope', function($firebaseObject, $rootScope){
+  
+  var myPos = {}  
+
   var obj = {
     map: null,
     marker: null,
@@ -64,29 +68,120 @@ angular.module('busitbaby.services', [])
     coords: null,
     init: function(){
       this.populateMap();
-      this.renderBus();
-      this.setOptions();
+      // this.renderBus();
+      // this.setOptions();
     },
 
-    populateMap: function(){
-       //map of Bronx,NY
-      var myLatlng = new google.maps.LatLng(29.951066, -90.071532)
-      var mapOptions = {
-        zoom: 12,
-        center: myLatlng,
+    getCurrentPos: function(){
+      console.log('returning myPos', myPos);
+      return myPos;
+    },
 
-      };
-      this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      var transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(this.map);
+    populateMap: function(scope){
 
-       this.marker = new google.maps.Marker({
-          position:myLatlng,
-          map: this.map,
-          title: "You are here!"
-        })
+      var myLatlng;
 
-      },
+      navigator.geolocation.watchPosition(function(position) {
+        
+        myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);  
+        // // myLatlng = new google.maps.LatLng(29.951066, -90.071532)
+        var mapOptions = {
+          zoom: 12,
+          center: myLatlng,
+          mapTypeId:google.maps.MapTypeId.ROADMAP,
+          mapTypeControl:false,
+          navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+        };
+
+        this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(this.map);
+
+        /* multiple Markers */
+        var currentPos = ['currentPos',position.coords.latitude,position.coords.longitude];
+        var destinationPos = ['destinationPos',position.coords.latitude - 0.005 ,position.coords.longitude - 0.005];
+        var markers = [currentPos, destinationPos];
+
+        // Loop through our array of markers & place each one on the map  
+        for( i = 0; i < markers.length; i++ ) {
+            if(i === 0){ //currentPos - dragble, custom icon
+              var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+              // bounds.extend(position);
+              this.marker = new google.maps.Marker({
+                  position: position,
+                  map: map,
+                  title: markers[i][0],
+                  draggable: true,
+                  icon: '../img/png/shopper1.png'
+              });
+              var personMarker = this.marker;
+              this.marker.addListener('drag', function() {
+                // console.log('lat:'+personMarker.getPosition().lat()+' lng:'+personMarker.getPosition().lng());
+                currentPos.lat = personMarker.getPosition().lat();
+                currentPos.lng = personMarker.getPosition().lng();
+                
+                myPos = [personMarker.getPosition().lat(), personMarker.getPosition().lng()];
+                
+                // console.log('scope.currentPos',scope.currentPos);
+                //applying Async for the google data and setting it in the rootScope
+                $rootScope.$applyAsync(function(){
+                  $rootScope.myPos  = {
+                    'lat': personMarker.getPosition().lat(),
+                    'lng': personMarker.getPosition().lng()
+                  }
+                  //fire an event when ever it is dragged;
+                  $rootScope.$broadcast('evtUpdateMyPos');
+                });
+                
+              });
+            } else { //destination - non-dragable
+              var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+              // bounds.extend(position);
+              this.marker = new google.maps.Marker({
+                  position: position,
+                  map: map,
+                  title: markers[i][0],
+              });
+              var desMarker = this.marker;
+              $rootScope.$applyAsync(function(){
+                $rootScope.desPos  = {
+                  'lat': desMarker.getPosition().lat(),
+                  'lng': desMarker.getPosition().lng()
+                }
+                //fire an event when ever it is dragged;
+                $rootScope.$broadcast('evtUpdateDesPos');
+              });
+            }
+            
+        }
+
+      });
+      
+
+      /*===============================================================
+      =            this one is working with another marker            =
+      ===============================================================*/
+      
+      // myLatlng = new google.maps.LatLng(29.951066, -90.071532)
+      // var mapOptions = {
+      //   zoom: 12,
+      //   center: myLatlng,
+      //   mapTypeId:google.maps.MapTypeId.ROADMAP,
+      //   mapTypeControl:false,
+      //   navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+      // };
+
+
+      // this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      // var transitLayer = new google.maps.TransitLayer();
+      // transitLayer.setMap(this.map);
+
+      // this.marker = new google.maps.Marker({
+      //   position:myLatlng,
+      //   map: this.map,
+      //   title: "You are here!"
+      // })
+    },
 
 
     renderBus: function(){
@@ -103,7 +198,8 @@ angular.module('busitbaby.services', [])
         that.marker = new google.maps.Marker({
           position: latlng,
           map: that.map,
-          icon: '../img/png/bus21.png'
+          icon: '../img/png/bus21.png',
+          draggable: true
         })
       });
       //update location on change to bus
@@ -141,19 +237,21 @@ angular.module('busitbaby.services', [])
        var that = this;
       // var image = ''; // Use your own image
       personMarker = new google.maps.Marker({
-        position: {lat:29.951066, lng: -90.071532},
+        // position: {lat:29.951066, lng: -90.071532},
+        position: {lat:37.5356009, lng: 127.0809173},
         map: this.map,
         icon: '../img/png/shopper1.png',
         draggable: true
       });
       personMarker.addListener('drag', function() {
         that.coords = personMarker.getPosition();
-        scope.getLoc(that.coords);
+        // scope.getLoc(that.coords);
       });
     },
   }
-    return obj;
-  }])
+
+  return obj;
+}]);
 
 
 // .factory('Sounds', function($q) {

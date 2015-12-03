@@ -8,12 +8,6 @@ angular.module('busitbaby.controllers', [])
 .controller('mapCtrl', function($scope, UserService){
 	console.log("you are in mapCtrl");
   $scope.user = UserService.getUser();
-  $scope.checkContact = checkContact;
-
-  // function checkContact(){
-  //   if(UserService.)
-  //   return 
-  // }
 
 })
 .controller('EndCtrl', function($scope){
@@ -25,9 +19,16 @@ angular.module('busitbaby.controllers', [])
 .controller('SignupCtrl', function($scope){
 	console.log("sign up page");
 })
-.controller('LogoutCtrl', function($scope, Auth, $location){
-  Auth.$unauth();
-  $location.path('main');
+.controller('LogoutCtrl', function($scope, Auth, $location, $timeout){
+
+  $scope.logout = logout;
+
+  function logout() {
+    Auth.$unauth();  
+    $location.path('main');
+  };
+  
+  
 })
 .controller('WhereCtrl', function($scope, UserService){
   
@@ -47,6 +48,7 @@ angular.module('busitbaby.controllers', [])
   $scope.setMiles = setMiles;
 
   function setMiles(miles){
+    miles = miles || 1;
     UserService.setUser('miles', miles);
   };
   
@@ -65,6 +67,7 @@ angular.module('busitbaby.controllers', [])
   
 
 })
+
 .controller('AboutCtrl', function($scope){
   console.log("about page!! our information goes here");
 
@@ -76,15 +79,15 @@ angular.module('busitbaby.controllers', [])
   ];
 
 })
+
 .controller('AlarmCtrl', function($scope) {
   console.log("Check out your alarm lists!");
    $scope.alarmList = [
     { id: 1, title: "September Remix", artist: "Kirk Franklin", url: '/music/september.mp3' },
     { id: 2, title: "Vibrate", artist: "", url: "" }
   ];
-
-
 })
+
 .controller('loginCtrl', function($scope, Auth, $location, UserService) {
 
   $scope.login = function(authMethod) {
@@ -98,7 +101,6 @@ angular.module('busitbaby.controllers', [])
       
       //save user info to db ---------------------TODO
       
-
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
         Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
@@ -124,24 +126,68 @@ angular.module('busitbaby.controllers', [])
     $scope.authData = authData;
   });
 })
-.controller('MapController', ['$scope', 'fireMap', 'isWithinRadius', '$location', function($scope, fireMap, isWithinRadius, $location){
+.controller('MapController', 
+  // ['$scope', 'fireMap', 'isWithinRadius', '$location', 
+  function($scope, UserService, fireMap, isWithinRadius, $location, $rootScope){
 
-  $scope.init = function(){
-    fireMap.init();
-		fireMap.addDraggableMarker($scope);
-  }
-
+  $scope.user = UserService.getUser();
+  $scope.currentPos = [];
   $scope.data = {
     sel: 'Going to W. Farms Rd',
     stop: '',
-		miles: 'Miles'
+    miles: 'Miles'
+  }
+  
+  //Listen on a broadcast events
+  $scope.$on('evtUpdateMyPos', function (){
+    console.log('evtUpdateMyPos is fired.', $rootScope.myPos);
+    $scope.currentPos = $rootScope.myPos
+  })
+
+  $scope.$on('evtUpdateDesPos', function(){
+    console.log('evtUpdateDesPos is fired');
+    $scope.desPos = $rootScope.desPos;
+  });
+
+  $scope.checkContact = checkContact;
+  $scope.init = init;
+  $scope.options = options;
+  $scope.getLoc = getLoc;
+
+  /**
+    
+      TODO:
+      - sound alert when dragging it close to the des or when it reaches - Peter
+      - twillio module so we can use it easily - shan
+      - change the destination address to cordinate(lat,lng) - alice
+    
+     */
+      
+
+  /*======================================
+  =            IMPLEMENTATION            =
+  ======================================*/
+  
+
+  function checkContact(){
+    if(UserService.getUser().contact.number){
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  function init(){
+    // fireMap.init();
+    fireMap.populateMap($scope)
+		// fireMap.addDraggableMarker($scope);
   }
 
-  $scope.options = function(){
+  function options(){
     fireMap.setOptions();
   }
 
-  $scope.getLoc = function(optionalCoords){
+  function getLoc(optionalCoords){
     var stopArr = fireMap.data.stops;
     var coords = {};
     if( optionalCoords ){
@@ -150,23 +196,18 @@ angular.module('busitbaby.controllers', [])
     } else {
       coords = {latitude: 29.951066, longitude: -90.071532};
     }
-    
-      
-        var end = {latitude: 29.951066, longitude: -90.071532};
-        //call location function
-        isWithinRadius($scope.data.miles, end, coords, function(bool){
-          var audio = new Audio('../music/firepager.mp3');
-          if(bool){
-            $location.path('/page4')
-            audio.play();
-          }
-
-        })
-
-      
+      var end = {latitude: 29.951066, longitude: -90.071532};
+      //call location function
+      isWithinRadius($scope.data.miles, end, coords, function(bool){
+        var audio = new Audio('../music/firepager.mp3');
+        if(bool){
+          $location.path('/page4');
+          audio.play();
+        }
+      })  
   }
 
-}])
+})
 
 
 

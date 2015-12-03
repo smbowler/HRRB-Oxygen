@@ -86,10 +86,7 @@ angular.module('busitbaby.services', [])
           title: "You are here!"
         })
 
-      })
-
-    },
-
+      },
 
 
     renderBus: function(){

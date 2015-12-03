@@ -10,10 +10,10 @@ angular.module('busitbaby.controllers', [])
   $scope.user = UserService.getUser();
   $scope.checkContact = checkContact;
 
-  function checkContact(){
-    if(UserService.)
-    return 
-  }
+  // function checkContact(){
+  //   if(UserService.)
+  //   return 
+  // }
 
 })
 .controller('EndCtrl', function($scope){

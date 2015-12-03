@@ -1,13 +1,30 @@
-<ion-tabs class="tabs-icon-top tabs-positive">
-    <ion-tab title="Home" icon="icon ion-home" href="#/">
+<!-- <ion-tabs class="tabs-icon-top tabs-positive">
+    <ion-tab title="Home" icon="icon ion-home">
       <ion-nav-view name = "home"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Your Account" icon="icon ion-gear-b" href="">
+    <ion-tab title="Your Account" icon="icon ion-gear-b" href='#/logout'>
       <ion-nav-view name = "account"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="About" icon="icon ion-happy-outline" href="#/about">
+    <ion-tab title="About" icon="icon ion-happy-outline" href='#/about'>
       <ion-nav-view name = "about"></ion-nav-view>
     </ion-tab>
 </ion-tabs>
+
+ -->
+
+<ion-footer-bar align-title="left" class="bar-positive footerbox">
+    <div class="buttons">
+      <button class="button icon ion-home">HOME</button>
+    </div>
+    <h1 class="title"></h1>
+    <h1 class="title footercenterbutton">
+      <div class="buttons">
+        <button class="button icon ion-gear-b" ui-sref="logout">SETTINGS</button>
+      </div>
+    </h1>
+    <div class="buttons" ng-click="doSomething()">
+      <button class="button icon ion-happy-outline" ui-sref="about">ABOUT</button>
+    </div>
+</ion-footer-bar>

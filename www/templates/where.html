@@ -23,7 +23,7 @@
           Previous Locations
         </div>
         <select ng-model="previousLocations">
-          <option ng-repeat="(key, value) in user.previousLocation">{{key}}</option>
+          <option ng-repeat="location in user.previousLocation">{{location.title}}</option>
           
         </select>
       </label>

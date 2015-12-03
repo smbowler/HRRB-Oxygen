@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+.mapContext h3 {
+  color: #888;
+  text-align: center;
+}
+
+.mapcontextemp {
+  color: #444;
+}
+
+.footerbox {
+  width: 0 auto;
+  /*padding: 0 10%;*/
+}
+.footercenterbutton {
+  padding-top: 5px;
+}

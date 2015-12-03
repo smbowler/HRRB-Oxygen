@@ -136,13 +136,13 @@ angular.module('busitbaby.controllers', [])
     sel: 'Going to W. Farms Rd',
     stop: '',
     miles: 'Miles'
-  }
+  };
   
   //Listen on a broadcast events
   $scope.$on('evtUpdateMyPos', function (){
     console.log('evtUpdateMyPos is fired.', $rootScope.myPos);
     $scope.currentPos = $rootScope.myPos
-  })
+  });
 
   $scope.$on('evtUpdateDesPos', function(){
     console.log('evtUpdateDesPos is fired');
@@ -154,20 +154,25 @@ angular.module('busitbaby.controllers', [])
   $scope.options = options;
   $scope.getLoc = getLoc;
 
+  var watchRadius = setInterval(function(){
+    $scope.getLoc(function(inRadius){
+      if(inRadius){
+        clearInterval(watchRadius);
+      }
+    });
+  }, 1000);
+
   /**
-    
       TODO:
-      - sound alert when dragging it close to the des or when it reaches - Peter
+      - sound alert when dragging it close to the des or when it reaches - Peter(done)
       - twillio module so we can use it easily - shan
       - change the destination address to cordinate(lat,lng) - alice
-    
      */
       
 
   /*======================================
   =            IMPLEMENTATION            =
   ======================================*/
-  
 
   function checkContact(){
     if(UserService.getUser().contact.number){
@@ -187,31 +192,19 @@ angular.module('busitbaby.controllers', [])
     fireMap.setOptions();
   }
 
-  function getLoc(optionalCoords){
-    var stopArr = fireMap.data.stops;
-    var coords = {};
-    if( optionalCoords ){
-      coords.latitude = optionalCoords.lat(),
-      coords.longitude = optionalCoords.lng();
-    } else {
-      coords = {latitude: 29.951066, longitude: -90.071532};
-    }
-      var end = {latitude: 29.951066, longitude: -90.071532};
-      //call location function
-      isWithinRadius($scope.data.miles, end, coords, function(bool){
-        var audio = new Audio('../music/firepager.mp3');
-        if(bool){
-          $location.path('/page4');
-          audio.play();
-        }
-      })  
+  function getLoc(cb){
+    //call location function
+    isWithinRadius($scope.user.miles, $scope.desPos, $scope.currentPos, function(bool){
+      var audio = new Audio('../music/September.mp3');
+      if(bool){
+        $location.path('/page4');
+        audio.play();
+        cb(true);
+      }
+    })  
   }
 
 })
-
-
-
-
 
 
 

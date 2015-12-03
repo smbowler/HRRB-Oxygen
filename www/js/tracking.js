@@ -1,10 +1,10 @@
-angular.module('trackingModule', []).
-  controller('trackingCtrl', ['$scope', 'isWithinRadius', function($scope, isWithinRadius) {
-    $scope.isWithinRadius = function(alertRadius, next, endCoords, startCoords) {
-      isWithinRadius(alertRadius, next, endCoords, startCoords);
-    };
-  }]).
-  factory('distance', function() {
+angular.module('trackingModule', [])
+  // .controller('trackingCtrl', ['$scope', 'isWithinRadius', function($scope, isWithinRadius) {
+  //   $scope.isWithinRadius = function(alertRadius, next, endCoords, startCoords) {
+  //     isWithinRadius(alertRadius, next, endCoords, startCoords);
+  //   };
+  // }])
+  .factory('distance', function() {
     return function(lat1, lon1, lat2, lon2){
       var myPos = new google.maps.LatLng(lat1, lon1);
       var yoPos = new google.maps.LatLng(lat2, lon2);
@@ -14,10 +14,13 @@ angular.module('trackingModule', []).
       console.log('dist: ', a)
       return a;
     }
-  }).
-  factory('isWithinRadius', ['distance', function(distance) {
+  })
+  .factory('isWithinRadius', ['distance', function(distance) {
+    console.log("now in the isWithinRadius");
     var usingGeolocation = false;
     return function(alertRadius, endCoords, startCoords, next) {
+      console.log('endCor', endCoords);
+      console.log('startCoords', startCoords);
       var callback = function(startCoords) {
         if( usingGeolocation ){
           startCoords = startCoords.coords;

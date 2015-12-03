@@ -6,7 +6,8 @@ angular.module('busitbaby.services', [])
   return $firebaseAuth(usersRef);
 })
 
-.factory('UserService', function($rootScope, Auth){
+
+.factory('UserService', function($rootScope, Auth, $http){
 
   var user = {
     displayName: '',
@@ -14,7 +15,8 @@ angular.module('busitbaby.services', [])
     profileImageURL: '',
     destination: '',
     previousLocation: [],
-    contact: {}
+    contact: {},
+    miles: 1
 
   };
 
@@ -48,11 +50,38 @@ angular.module('busitbaby.services', [])
     console.log("a new contact has been added", user);
   };
 
+  var addUserinDB = function(){ //working on here.
+    $http({
+        method: 'POST', 
+        url: '/api/users',
+        cache: 'true',
+        data: {
+          firstName: authData.facebook.cachedUserProfile.first_name,
+          lastName: authData.facebook.cachedUserProfile.last_name,
+          displayName: authData.facebook.displayName,
+          gender: authData.facebook.cachedUserProfile.gender,
+          userID: authData.facebook.id,
+          profileImageURL: authData.facebook.profileImageURL,
+          provider: authData.provider,
+          favorites: [],
+          matches: []
+        }
+      }).success(function (user){
+        // userService.signedInUser = user;
+        defer.resolve(user);
+      });
+
+      return defer.promise;
+  };
+
+
+
   return {
     getUser: getUser,
     setUser: setUser,
     addPreviousLocation: addPreviousLocation,
-    addContact: addContact
+    addContact: addContact,
+    addUserinDB: addUserinDB
   };
 })
 
@@ -99,7 +128,7 @@ angular.module('busitbaby.services', [])
 
         /* multiple Markers */
         var currentPos = ['currentPos',position.coords.latitude,position.coords.longitude];
-        var destinationPos = ['destinationPos',position.coords.latitude - 0.005 ,position.coords.longitude - 0.005];
+        var destinationPos = ['destinationPos',position.coords.latitude - 0.05 ,position.coords.longitude - 0.05];
         var markers = [currentPos, destinationPos];
 
         // Loop through our array of markers & place each one on the map  
@@ -126,8 +155,8 @@ angular.module('busitbaby.services', [])
                 //applying Async for the google data and setting it in the rootScope
                 $rootScope.$applyAsync(function(){
                   $rootScope.myPos  = {
-                    'lat': personMarker.getPosition().lat(),
-                    'lng': personMarker.getPosition().lng()
+                    'latitude': personMarker.getPosition().lat(),
+                    'longitude': personMarker.getPosition().lng()
                   }
                   //fire an event when ever it is dragged;
                   $rootScope.$broadcast('evtUpdateMyPos');
@@ -145,8 +174,8 @@ angular.module('busitbaby.services', [])
               var desMarker = this.marker;
               $rootScope.$applyAsync(function(){
                 $rootScope.desPos  = {
-                  'lat': desMarker.getPosition().lat(),
-                  'lng': desMarker.getPosition().lng()
+                  'latitude': desMarker.getPosition().lat(),
+                  'longitude': desMarker.getPosition().lng()
                 }
                 //fire an event when ever it is dragged;
                 $rootScope.$broadcast('evtUpdateDesPos');

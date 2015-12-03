@@ -24,7 +24,7 @@ app.listen(port);
 console.log('listening on port:', port);
 
 //connect mongo DB
-var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/BusitBaby_db3';
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/BusitBaby_db6';
 
 mongoose.connect(mongoURI);
 
@@ -38,15 +38,13 @@ var twillio = function(number, message) {
   //twilio #
   var twilio_number = '+12313071512';
 
-  
-  
-   
   //require the Twilio module and create a REST client
   // var client = require('twilio')('ACCOUNT_SID', 'AUTH_TOKEN');
 
   var shanNumber = "+19493954894"
   var peterNumber = "+821074511080";
   var samNumber = "+12147251641";
+  var aliceNumber = "+15049521104";
 
   //Send an SMS text message
   client.sendMessage({

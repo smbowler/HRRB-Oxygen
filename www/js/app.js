@@ -12,7 +12,6 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
   });
 })
 
-
 .config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
 
@@ -21,9 +20,9 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 			templateUrl: "templates/main.html",
 			controller: 'MainCtrl'
 		})
-		.state('page2', {
-			url: "/page2",
-			templateUrl: "templates/page2.html",
+		.state('map', {
+			url: "/map",
+			templateUrl: "templates/map.html",
 			controller: 'trackCtrl'
 		})
 		.state('page3', {
@@ -59,7 +58,17 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 		.state('where', {
 			url: "/where",
 			templateUrl: "templates/where.html",
-			controller: ''
+			controller: 'WhereCtrl as where'
+		})
+		.state('when', {
+			url: "/when",
+			templateUrl: "templates/when.html",
+			controller: 'WhenCtrl'
+		})
+		.state('logout', {
+			url: "/logout",
+			templateUrl: "templates/logout.html",
+			controller: 'LogoutCtrl'
 		})
 		// .state('record', {
 		// 	url: "/record",
@@ -68,4 +77,12 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 		// })
 		$urlRouterProvider.otherwise('/main');
 
-});
+})
+
+.directive('appMenu', function(){
+  return {
+    restrict: "EA", 
+    // replace: true,
+    templateUrl: "templates/directive.menu.html"
+  }
+})

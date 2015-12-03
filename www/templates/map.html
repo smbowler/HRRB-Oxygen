@@ -11,7 +11,7 @@
 
         <label class="item item-input item-select">
           <div class="input-label">
-          Direction
+          Destination
           </div>
           <!-- $scope.data.sel will update on each change, and call options function -->
           <select name="selection" ng-model="data.sel" ng-change="options()" class="direction">
@@ -19,9 +19,9 @@
             <option>Going to Wash. Heights</option>
           </select>
         </label>
-        <label class="item item-input item-select">
+        <!-- <label class="item item-input item-select">
           <div class="input-label">
-          Stop
+          Distance from where you are
           </div>
           <select class="stop" ng-model="data.stop">
           </select>
@@ -38,7 +38,7 @@
             <option>2</option>
           </select>
         </label>
-
+ -->
       </div>
     </div>
     <br>
@@ -47,3 +47,6 @@
     </div>
   </ion-content>
 </div>
+
+<app-Menu>
+

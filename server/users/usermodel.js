@@ -14,22 +14,32 @@ var UserSchema = new mongoose.Schema({
   },
   emailAddress: {
     type: String,
-    required: true,
-    unique: true
+    required: false,
+    unique: false
   },
   profileImageURL: {
     type: String,
-    required: true,
-    unique: true
+    required: false,
+    unique: false
   },
   destination: {
     type: String,
-    required: true
+    required: false
+  },
+  
+  miles: {
+    type: Number,
+    required: false
+  },
+
+  isInMiles: {
+    type: Boolean,
+    required: false
   },
 
   favorites : [mongoose.Schema.Types.Mixed],
 
-  contacts: mongoose.Schema.Types.Mixed
+  contact: mongoose.Schema.Types.Mixed
 
 });
 

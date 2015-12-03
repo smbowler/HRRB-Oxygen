@@ -23,7 +23,7 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 		.state('map', {
 			url: "/map",
 			templateUrl: "templates/map.html",
-			controller: 'trackCtrl'
+			controller: 'mapCtrl'
 		})
 		.state('page3', {
 			url: "/page3",

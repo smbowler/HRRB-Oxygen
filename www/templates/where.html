@@ -4,14 +4,15 @@
         <h1 class="title">Bus It Baby!</h1>
   </ion-header-bar>
     <ion-content>
-    <br><br><br>
-    <!-- <div>test{{where.displayName}}</div>; -->
+    <br>
+    <h3 style="text-align: center">Hello, {{user.displayName}}</h3>
+    <h3 style="padding-bottom:5%; text-align: center">Where are you heading?</h3>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Name" ng-model="where.name">
+        <input type="text" placeholder="Name" ng-model="name">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Location" ng-model="where.location">
+        <input type="text" placeholder="Destination" ng-model="destination">
       </label>
     </div>
 
@@ -21,17 +22,15 @@
         <div class="input-label">
           Previous Locations
         </div>
-        <select>
-          <option>Home</option>
-          <option>Work</option>
-          <option>School</option>
-          <option>Library</option>
+        <select ng-model="previousLocations">
+          <option ng-repeat="(key, value) in user.previousLocation">{{key}}</option>
+          
         </select>
       </label>
 
     </div>
     <div style="text-align: center">
-      <a class="button" href="#/when" >Next</a>
+      <a class="button" href="#/when" ng-click="addPreviousLocation(name, destination);">Next</a>
     </div>
     
   </ion-content>

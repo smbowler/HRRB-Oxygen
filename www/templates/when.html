@@ -14,17 +14,18 @@
         <div class="input-label">
         Distance
         </div>
-        <select class="distance">
+        <select class="distance" ng-model="miles">
           <option selected disabled>Miles</option>
           <option>0.5</option>
           <option>1</option>
           <option>1.5</option>
+          <option>2</option>
         </select>
       </label>
     </div>
     <br>
-    <div style="text-align: center">
-    <a class="button" ui-sref="whotomessage" >Next</a>
+    <div style="text-align: center" ng-click="setMiles(miles);">
+    <a class="button" ui-sref="whotomessage">Next</a>
     </div>
   </ion-content>
 

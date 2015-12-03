@@ -7,20 +7,20 @@
   <div class="list">
     <label class="item item-input item-stacked-label">
       <span class="input-label">Who do you want to message</span>
-      <input type="text" placeholder="mom">
+      <input type="text" placeholder="mom" ng-model="contact.name">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label">Phone Number</span>
-      <input type="text" placeholder="123-456-7890">
+      <input type="text" placeholder="123-456-7890" ng-model="contact.number">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label">Message to text</span>
-      <input type="text" placeholder="almost there, be ready">
+      <input type="text" placeholder="almost there, be ready" ng-model="contact.message">
     </label>
   </div>
   <div style="text-align: center">
-    <a class="button" href="#/map" >Skip</a>
-    <a class="button" href="#/map" >Next</a>
+    <a class="button" href="#/map">Skip</a>
+    <a class="button" href="#/map" ng-click="saveContactInfo();">Next</a>
   </div>
 
 </ion-view>

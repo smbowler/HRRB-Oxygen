@@ -5,8 +5,16 @@ angular.module('busitbaby.controllers', [])
 	console.log("this is the first page!");
 
 })
-.controller('trackCtrl', function($scope){
-	console.log("this is the second page with maps and start&end destination");
+.controller('mapCtrl', function($scope, UserService){
+	console.log("you are in mapCtrl");
+  $scope.user = UserService.getUser();
+  $scope.checkContact = checkContact;
+
+  function checkContact(){
+    if(UserService.)
+    return 
+  }
+
 })
 .controller('EndCtrl', function($scope){
 	console.log("final page");
@@ -22,20 +30,40 @@ angular.module('busitbaby.controllers', [])
   $location.path('main');
 })
 .controller('WhereCtrl', function($scope, UserService){
-  var where = this;
   
-  $scope.$on('evtUpdateUserInfo', function(){
-    console.log(UserService);
-    where.displayName = UserService.displayName;
-    console.log('displayName',where.displayName);
-  });
+  $scope.user = UserService.getUser();
 
+  $scope.addPreviousLocation = addPreviousLocation;
+
+  
+  function addPreviousLocation(title, destination){
+    UserService.addPreviousLocation(title, destination);
+    $scope.title = '';
+    $scope.destination = '';
+  };
+  
 })
 .controller('WhenCtrl', function($scope, UserService){
-  var when = this;
+  $scope.setMiles = setMiles;
+
+  function setMiles(miles){
+    UserService.setUser('miles', miles);
+  };
+  
+  
 })
-.controller('WhotoMessageCtrl', function($scope){
+.controller('WhotoMessageCtrl', function($scope, UserService){
   console.log("whotomessage page");
+
+  $scope.saveContactInfo = saveContactInfo;
+  $scope.contact = {};
+  
+  function saveContactInfo() {
+    UserService.addContact($scope.contact);
+    $scope.contact = {};
+  };
+  
+
 })
 .controller('AboutCtrl', function($scope){
   console.log("about page!! our information goes here");
@@ -62,13 +90,13 @@ angular.module('busitbaby.controllers', [])
   $scope.login = function(authMethod) {
     //Shan >> changed line below to use authWithOAuthPopup
     Auth.$authWithOAuthPopup(authMethod).then(function(authData) {
-      //TODO - Save this auth data to the DB
+
       //save user info
       console.log(authData);
-      UserService.displayName = authData.facebook.displayName;
-      UserService.profileImageURL = authData.facebook.profileImageURL;
-      UserService.broadcastUserInfo();
-      //save user info to db
+      UserService.setUser('displayName', authData.facebook.displayName);
+      UserService.setUser('profileImageURL', authData.facebook.profileImageURL);
+      
+      //save user info to db ---------------------TODO
       
 
     }).catch(function(error) {
@@ -79,6 +107,10 @@ angular.module('busitbaby.controllers', [])
         console.log(error);
       }
     });
+  };
+
+  $scope.guest = function() {
+    UserService.setUser('displayName', 'Guest');
   };
 
   Auth.$onAuth(function(authData) {

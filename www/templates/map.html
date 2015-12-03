@@ -4,16 +4,15 @@
 </ion-header-bar>
   <ion-content ng-controller="MapController" ng-init="init()">
     <!-- map has to have size or it will not show up -->
-    <div id="map" style="height:300px;width:100%;" align="middle"></div>
+    <div id="map" style="height:250px;width:100%;" align="middle"></div>
 
-  	<div class="locations">
+  	div class="locations">
       <div class="list">
 
         <label class="item item-input item-select">
           <div class="input-label">
           Destination
           </div>
-          <!-- $scope.data.sel will update on each change, and call options function -->
           <select name="selection" ng-model="data.sel" ng-change="options()" class="direction">
             <option selected>Going to W. Farms Rd</option>
             <option>Going to Wash. Heights</option>
@@ -40,7 +39,7 @@
         </label>
  -->
       </div>
-    </div>
+    </div
     <br>
     <div style="text-align: center">
     <!-- <a class="button" href="#/page3" >Next</a> -->

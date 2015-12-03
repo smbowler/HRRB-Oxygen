@@ -55,7 +55,8 @@ angular.module('busitbaby.services', [])
   };
 })
 
-.factory('fireMap', ['$firebaseObject', function($firebaseObject){
+.factory('fireMap', ['$firebaseObject'], function($firebaseObject){
+  
   var obj = {
     map: null,
     marker: null,
@@ -85,9 +86,7 @@ angular.module('busitbaby.services', [])
           map: this.map,
           title: "You are here!"
         })
-
       },
-
 
     renderBus: function(){
       //save context
@@ -152,8 +151,9 @@ angular.module('busitbaby.services', [])
       });
     },
   }
-    return obj;
-  }])
+
+  return obj;
+)
 
 
 // .factory('Sounds', function($q) {

@@ -11,7 +11,7 @@ angular.module('trackingModule', [])
       var a = google.maps.geometry
                  .spherical
                  .computeDistanceBetween(myPos,yoPos) * 0.00062
-      console.log('dist: ', a)
+      // console.log('dist: ', a)
       return a;
     }
   })
@@ -19,8 +19,8 @@ angular.module('trackingModule', [])
     console.log("now in the isWithinRadius");
     var usingGeolocation = false;
     return function(alertRadius, endCoords, startCoords, next) {
-      console.log('endCor', endCoords);
-      console.log('startCoords', startCoords);
+      // console.log('endCor', endCoords);
+      // console.log('startCoords', startCoords);
       var callback = function(startCoords) {
         if( usingGeolocation ){
           startCoords = startCoords.coords;

@@ -1,7 +1,15 @@
+/* twillio envs */
+// Your accountSid and authToken from twilio.com/user/account
+var accountSid = 'ACa3e64a2845c19bc778fc1bf37e6a3b8b';
+// var authToken = "{{ auth_token }}";  << original 
+var authToken = "0f9456051662bec5e2aa9b591655a4ba";
+
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./server/users/usermodel');
+var client = require('twilio')(accountSid, authToken);
 
 //express config
 var app = express();
@@ -16,9 +24,75 @@ app.listen(port);
 console.log('listening on port:', port);
 
 //connect mongo DB
-var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/BusitBaby_db';
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/BusitBaby_db3';
 
 mongoose.connect(mongoURI);
+
+
+/*==============================================
+=            TWILLIO IMPLEMENTATION            =
+==============================================*/
+//CREATE TWILLIO FUNCTION
+var twillio = function(number, message) {
+  console.log('twillio fired');
+  //twilio #
+  var twilio_number = '+12313071512';
+
+  
+  
+   
+  //require the Twilio module and create a REST client
+  // var client = require('twilio')('ACCOUNT_SID', 'AUTH_TOKEN');
+
+  var shanNumber = "+19493954894"
+  var peterNumber = "+821074511080";
+  var samNumber = "+12147251641";
+
+  //Send an SMS text message
+  client.sendMessage({
+
+      to: '+1'+number, // Any number Twilio can deliver to
+      from: twilio_number, // A number you bought from Twilio and can use for outbound communication
+      body: message // body of the SMS message
+
+  }, function(err, responseData) { //this function is executed when a response is received from Twilio
+
+      if (!err) { // "err" is an error received during the request, if any
+
+          // "responseData" is a JavaScript object containing data received from Twilio.
+          // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
+          // http://www.twilio.com/docs/api/rest/sending-sms#example-1
+
+          console.log(responseData.from); // outputs "+14506667788"
+          console.log(responseData.body); // outputs "word to your mother."
+
+      }
+  });
+
+};
+
+//keep watch DB using setInterval
+var watchisInMiles = setInterval(function(){
+  //if isInMiles is true
+  User.findOne({'isInMiles': true}, function(err, user){
+    if(!err){
+      console.log('get with isInMiles true', user);
+      //fire twillio function
+      if(user){
+        twillio(user.contact.number, user.contact.message);
+        clearInterval(watchisInMiles);
+      }
+    } else {
+      console.error("error while getting a user");
+    }
+  });
+}, 3000);
+
+
+/*=====  End of TWILLIO IMPLEMENTATION  ======*/
+
+
+
 
 
 // API IMPLEMENTATION ----- //
@@ -54,7 +128,9 @@ app.post('/api/users', function (req, res){
     profileImageURL: req.body.profileImageURL,
     destination: req.body.destination,
     favorites : req.body.favorites,
-    contacts: req.body.contacts
+    contact: req.body.contact,
+    miles: req.body.miles,
+    isInMiles: req.body.isInMiles
   });
 
   user.save(function (err){
@@ -80,6 +156,11 @@ app.put('/api/users/:id', function (req, res){
       user.destination = req.body.destination;
       user.favorites = req.body.favorites;
       user.contacts = req.body.contacts;
+      user.destination = req.body.destination;
+      user.favorites = req.body.favorites;
+      user.contact = req.body.contact;
+      user.miles = req.body.miles;
+      user.isInMiles = req.body.isInMiles;
       //save it to the db.
       user.save(function (err){
         if(!err){

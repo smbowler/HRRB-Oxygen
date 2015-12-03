@@ -7,7 +7,7 @@ angular.module('busitbaby.services', [])
 })
 
 
-.factory('UserService', function($rootScope, Auth, $http){
+.factory('UserService', function($rootScope, Auth, $http, $q){
 
   var user = {
     displayName: '',
@@ -16,7 +16,8 @@ angular.module('busitbaby.services', [])
     destination: '',
     previousLocation: [],
     contact: {},
-    miles: 1
+    miles: 1,
+    isInMiles: false
 
   };
 
@@ -50,28 +51,19 @@ angular.module('busitbaby.services', [])
     console.log("a new contact has been added", user);
   };
 
-  var addUserinDB = function(){ //working on here.
+  var updateUserinDB = function(){ //working on here.
+    var defer = $q.defer();
     $http({
         method: 'POST', 
         url: '/api/users',
         cache: 'true',
-        data: {
-          firstName: authData.facebook.cachedUserProfile.first_name,
-          lastName: authData.facebook.cachedUserProfile.last_name,
-          displayName: authData.facebook.displayName,
-          gender: authData.facebook.cachedUserProfile.gender,
-          userID: authData.facebook.id,
-          profileImageURL: authData.facebook.profileImageURL,
-          provider: authData.provider,
-          favorites: [],
-          matches: []
-        }
+        data: user
       }).success(function (user){
-        // userService.signedInUser = user;
+        console.log('user has been updated on DB', user);
         defer.resolve(user);
       });
 
-      return defer.promise;
+    return defer.promise;
   };
 
 
@@ -81,7 +73,7 @@ angular.module('busitbaby.services', [])
     setUser: setUser,
     addPreviousLocation: addPreviousLocation,
     addContact: addContact,
-    addUserinDB: addUserinDB
+    updateUserinDB: updateUserinDB
   };
 })
 

@@ -62,6 +62,10 @@ angular.module('busitbaby.controllers', [])
   
   function saveContactInfo() {
     UserService.addContact($scope.contact);
+    UserService.updateUserinDB().then(function (user){
+      console.log('user has been updated:client side', user);
+
+    });
     $scope.contact = {};
   };
   
@@ -140,12 +144,12 @@ angular.module('busitbaby.controllers', [])
   
   //Listen on a broadcast events
   $scope.$on('evtUpdateMyPos', function (){
-    console.log('evtUpdateMyPos is fired.', $rootScope.myPos);
+    // console.log('evtUpdateMyPos is fired.', $rootScope.myPos);
     $scope.currentPos = $rootScope.myPos
   });
 
   $scope.$on('evtUpdateDesPos', function(){
-    console.log('evtUpdateDesPos is fired');
+    // console.log('evtUpdateDesPos is fired');
     $scope.desPos = $rootScope.desPos;
   });
 
@@ -186,11 +190,11 @@ angular.module('busitbaby.controllers', [])
     // fireMap.init();
     fireMap.populateMap($scope)
 		// fireMap.addDraggableMarker($scope);
-  }
+  };
 
   function options(){
     fireMap.setOptions();
-  }
+  };
 
   function getLoc(cb){
     //call location function
@@ -198,6 +202,16 @@ angular.module('busitbaby.controllers', [])
       var audio = new Audio('../music/September.mp3');
       if(bool){
         $location.path('/page4');
+        
+        //change isInMales pro to true;
+        UserService.setUser('isInMiles', true);
+        console.log('setting inInMiles to True', UserService.getUser());
+        if(UserService.getUser().isInMiles){
+          //update the DB.
+          UserService.updateUserinDB().then(function(user){
+            console.log('user has been updated.',user);
+          });
+        }
         audio.play();
         cb(true);
       }

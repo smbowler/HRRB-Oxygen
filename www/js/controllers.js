@@ -33,7 +33,7 @@ angular.module('busitbaby.controllers', [])
 .controller('WhereCtrl', function($scope, UserService){
   
   $scope.user = UserService.getUser();
-
+  console.log($scope.destination);
   $scope.addPreviousLocation = addPreviousLocation;
 
   
@@ -135,6 +135,7 @@ angular.module('busitbaby.controllers', [])
   function($scope, UserService, fireMap, isWithinRadius, $location, $rootScope){
 
   $scope.user = UserService.getUser();
+  console.log(UserService.destgeocode);
   $scope.currentPos = [];
   $scope.data = {
     sel: 'Going to W. Farms Rd',

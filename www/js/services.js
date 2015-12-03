@@ -6,21 +6,53 @@ angular.module('busitbaby.services', [])
   return $firebaseAuth(usersRef);
 })
 
-.factory('UserService', function($rootScope){
-  var userService = {
+.factory('UserService', function($rootScope, Auth){
+
+  var user = {
     displayName: '',
     emailAddress: '',
     profileImageURL: '',
     destination: '',
-    favorite: {},
-    contacts: {}
-  }
+    previousLocation: [],
+    contacts: []
 
-  userService.broadcastUserInfo = function () {
-    $rootScope.$broadcast('evtUpdateUserInfo')
   };
 
-  return userService;
+  var getUser = function() {
+    console.log("returning user info")
+    return user;
+  };
+
+  var setUser = function(key, value) {
+    user[key] = value;
+    console.log("user has been updated", user);
+  };
+
+  var addPreviousLocation = function(title, destination){
+    console.log("a new location has been added", title + '-' + destination);
+    user.destination = destination;
+    user.previousLocation.push({
+      'title': title,
+      'destination' : destination
+    });
+    console.log("user info has been updated", user);
+  };
+
+  var addContact = function(contact){
+    user.contacts.push({
+      'name': contact.name,
+      'number': contact.number,
+      'message': contact.message
+    });
+    console.log("a new contact has been added", user);
+  };
+
+  return {
+    getUser: getUser,
+    setUser: setUser,
+    addPreviousLocation: addPreviousLocation,
+    addContact: addContact
+  };
 })
 
 .factory('fireMap', ['$firebaseObject', function($firebaseObject){

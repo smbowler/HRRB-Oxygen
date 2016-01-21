@@ -1,4 +1,4 @@
-angular.module('busitbaby.services', [])
+subangular.module('busitbaby.services', [])
 
 .factory("Auth", function($firebaseAuth) {
   //Shan >> changed line below, passing the url for my deployment of firebase into Firebase constructor
@@ -6,14 +6,10 @@ angular.module('busitbaby.services', [])
   return $firebaseAuth(usersRef);
 })
 
-<<<<<<< 6b5af8a1b6394cb07941c316a91f92d0be9ba108
 
 .factory('UserService', function($rootScope, Auth, $http, $q){
 
-=======
-.factory('UserService', function($rootScope, Auth){
   var geocoder = new google.maps.Geocoder();
->>>>>>> feat/geocode - working geocode feature
   var user = {
     displayName: '',
     emailAddress: '',

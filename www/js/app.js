@@ -15,6 +15,11 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 .config(function($stateProvider, $urlRouterProvider){
 		$stateProvider
 
+		.state('/', {
+			url: "/main",
+			templateUrl: "templates/main.html",
+			controller: 'MainCtrl'
+		})
 		.state('main', {
 			url: "/main",
 			templateUrl: "templates/main.html",

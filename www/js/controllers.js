@@ -3,33 +3,37 @@ angular.module('busitbaby.controllers', [])
 
 .controller('MainCtrl', function($scope){
 	console.log("this is the first page!");
-
 })
+
+.controller('LandingCtrl', function($scope){
+  console.log("this is the landing page!");
+})
+
 .controller('mapCtrl', function($scope, UserService){
 	console.log("you are in mapCtrl");
   $scope.user = UserService.getUser();
-
 })
+
 .controller('EndCtrl', function($scope){
 	console.log("final page");
 })
+
 .controller('SigninCtrl', function($scope){
 	console.log("sign in page");
 })
+
 .controller('SignupCtrl', function($scope){
 	console.log("sign up page");
 })
+
 .controller('LogoutCtrl', function($scope, Auth, $location, $timeout){
-
   $scope.logout = logout;
-
   function logout() {
     Auth.$unauth();  
     $location.path('main');
   };
-  
-  
 })
+
 .controller('WhereCtrl', function($scope, UserService){
   
   $scope.user = UserService.getUser();
@@ -54,20 +58,38 @@ angular.module('busitbaby.controllers', [])
   
   
 })
-.controller('WhotoMessageCtrl', function($scope, UserService){
+.controller('WhotoMessageCtrl', function($scope, UserService, $http, $q){
   console.log("whotomessage page");
 
   $scope.saveContactInfo = saveContactInfo;
   $scope.contact = {};
+  $scope.sendTestMessage = sendTestMessage;
   
+  function sendTestMessage(number, message){
+    console.log('this fired', number);
+    var defer = $q.defer();
+    $http({
+        url: 'http://127.0.0.1:3000/sendsms',
+        method: 'POST', 
+        data: JSON.stringify({number, message}),
+        contentType: 'application/json',
+      }).success(function (number, message){
+        console.log('text has been sent to', number, 'with the following message:', message);
+        defer.resolve(number);
+      });
+      return defer.promise;
+  };
+
   function saveContactInfo() {
     UserService.addContact($scope.contact);
     UserService.updateUserinDB().then(function (user){
       console.log('user has been updated:client side', user);
-
     });
     $scope.contact = {};
   };
+
+
+
   
 
 })
@@ -203,7 +225,9 @@ angular.module('busitbaby.controllers', [])
       var audio = new Audio('../music/September.mp3');
       if(bool){
         $location.path('/page4');
-        
+        UserService.sendTestMessage(UserService.getUser().contact.number, UserService.getUser().contact.message)
+        console.log(UserService.getUser().contact.number, UserService.getUser().contact.message);
+        // console.log('Text has been sent to,' UserService.getUser().contact.name);
         //change isInMales pro to true;
         UserService.setUser('isInMiles', true);
         console.log('setting inInMiles to True', UserService.getUser());
@@ -218,6 +242,21 @@ angular.module('busitbaby.controllers', [])
       }
     })  
   }
+
+  function sendTestMessage(number, message){
+    console.log('this fired', number);
+    var defer = $q.defer();
+    $http({
+        url: 'http://127.0.0.1:3000/sendsms',
+        method: 'POST', 
+        data: JSON.stringify({number, message}),
+        contentType: 'application/json',
+      }).success(function (number, message){
+        console.log('text has been sent to', number, 'with the following message:', message);
+        defer.resolve(number);
+      });
+      return defer.promise;
+  };
 
 })
 

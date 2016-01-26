@@ -1,18 +1,20 @@
 <ion-view view-title="Where">
 
-  <ion-header-bar class="bar-positive">
-        <h1 class="title">Bus It Baby!</h1>
-  </ion-header-bar>
-    <ion-content>
+<!--   <ion-header-bar class="bar-positive">
+        <h1 class="title">Ping</h1>
+  </ion-header-bar> -->
+
+    <ion-content class="where">
     <br>
     <h3 style="text-align: center">Hello, {{user.displayName}}</h3>
-    <h3 style="padding-bottom:5%; text-align: center">Where are you heading?</h3>
+
+    <h3 style="padding-bottom:5%; text-align: center">Set your destination</h3>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Name" ng-model="name">
+        <input type="text" placeholder="Name of Destination" ng-model="name">
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Destination" ng-model="destination">
+        <input type="text" placeholder="Address" value="1915 Philip Street New Orleans, LA 70113" ng-model="destination">
       </label>
     </div>
 

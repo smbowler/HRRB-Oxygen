@@ -20,6 +20,11 @@ angular.module('busitbaby', ['ionic', 'firebase', 'busitbaby.controllers', 'busi
 			templateUrl: "templates/main.html",
 			controller: 'MainCtrl'
 		})
+		.state('landing',{
+			url:"/landing",
+			templateUrl: "templates/landing.html",
+			controller:'LandingCtrl'
+		})
 		.state('map', {
 			url: "/map",
 			templateUrl: "templates/map.html",

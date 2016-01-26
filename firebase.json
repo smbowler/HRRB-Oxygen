@@ -1,5 +1,5 @@
 {
-  "firebase": "HRRB-Oxygen",
+  "firebase": "safealert",
   "public": "www",
   "ignore": [
     "firebase.json",

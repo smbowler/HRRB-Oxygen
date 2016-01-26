@@ -18,7 +18,7 @@ var samNumber = "+12147251641";
 //Send an SMS text message
 client.sendMessage({
 
-    to: shanNumber, // Any number Twilio can deliver to
+    to: samNumber, // Any number Twilio can deliver to
     from: twilio_number, // A number you bought from Twilio and can use for outbound communication
     body: 'word to your mother.' // body of the SMS message
 

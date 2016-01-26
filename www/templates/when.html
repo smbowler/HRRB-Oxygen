@@ -1,14 +1,14 @@
 <ion-view view-title="WhenAlert">
 
-  <ion-header-bar class="bar-positive">
-    <h1 class="title">Bus It Baby!</h1>
-  </ion-header-bar>
+<!--   <ion-header-bar class="bar-positive">
+    <h1 class="title">Ben</h1>
+  </ion-header-bar> -->
   
-  <ion-content>
+  <ion-content class="when">
   <br><br>
     <!-- map has to have size or it will not show up -->
-    <h3 style="padding: 10%; text-align: center">How Close is Close Enough?</h3>
-    <p style="padding: 5%">When do you want to be alerted that you are almost at your destination?</p>
+    <h3 style="padding: 5%; text-align: center">Set your distance</h3>
+    <p style="padding: 5%">How far away do you want from your destination do you want to send a ping?</p>
     <div class="list">
       <label class="item item-input item-select">
         <div class="input-label">
@@ -25,6 +25,7 @@
     </div>
     <br>
     <div style="text-align: center" ng-click="setMiles(miles);">
+    <a class="button" href="#/where">Previous</a>
     <a class="button" ui-sref="whotomessage">Next</a>
     </div>
   </ion-content>

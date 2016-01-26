@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+/*
+#wrapper {
+	font-family: 'Raleway Dots';
+}*/
 .mapContext h3 {
   color: #888;
   text-align: center;
@@ -15,3 +19,74 @@
 .footercenterbutton {
   padding-top: 5px;
 }
+
+#circle {
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px; 
+    background-color: #baffc9;
+}
+
+#circleDest{
+	width: 40px;
+    height: 40px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; 
+    background-color: #bae1ff;
+    text-align: center;
+    margin:3px;
+  }
+
+#circleDist{
+	width: 40px;
+    height: 40px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; 
+    background-color: #ffdfba;
+    margin:3px;
+}
+
+#circleCont{
+		width: 40px;
+    height: 40px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; 
+    background-color: #baffc9;
+    margin:3px;
+}
+
+.where{
+	background-color: #8EF9F3!important;
+}
+
+.when{
+	background-color: #5EFC8D!important;
+}
+.whoto{
+	background-color: #8377D1!important;
+}
+.one{
+	background-color: #8EF9F3;
+	height:100px;
+}
+.two{
+	background-color: #5EFC8D;
+	height:100px;
+}
+.three{
+	background-color: #8377D1;
+	height:100px;
+}
+.text{
+	vertical-align: center;
+}
+
+.mainpageback{
+	background-color: #CFBAE1 !important;
+}
+

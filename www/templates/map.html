@@ -1,12 +1,12 @@
 <div class = "tracking page">
-<ion-header-bar class="bar-positive">
-      <h1 class="title">Bus It Baby!</h1>
-</ion-header-bar>
+<!-- <ion-header-bar class="bar-positive">
+      <h1 class="title">Ping</h1>
+</ion-header-bar> -->
   <ion-content ng-controller="MapController" ng-init="init()">
     <!-- map has to have size or it will not show up -->
-    <div id="map" style="height:250px;width:100%;" align="middle"></div>
-    <div>CurrentPos - lat:{{currentPos.latitude}}, lng:{{currentPos.longitude}}</div>
-    <div>DestinPos - lat:{{desPos.latitude}}, lng:{{desPos.longitude}}</div>
+    <div id="map" style="height:325px;width:100%;" align="middle"></div>
+<!--     <div>CurrentPos - lat:{{currentPos.latitude}}, lng:{{currentPos.longitude}}</div>
+    <div>DestinPos - lat:{{desPos.latitude}}, lng:{{desPos.longitude}}</div> -->
   	<div class="locations">
       <div class="list">
 
@@ -15,8 +15,8 @@
           <div class="mapContext">
             <h3>Your Destination is</h3>
             <h3><span class="mapcontextemp">{{user.destination}}</span></h3>
-            <h3 ng-show="checkContact();">We will let you know and call <span class="mapcontextemp">{{user.contact.name}}</span> when you got <span class="mapcontextemp">{{user.miles}}</span> miles close to the destination</h3>
-            <h3 ng-hide="checkContact()">We will let you know when you get <span class="mapcontextemp">{{user.miles}}</span> miles close to the destination</h3>
+            <h3 ng-show="checkContact();">We will ping you and <span class="mapcontextemp">{{user.contact.name}}</span> when you are <span class="mapcontextemp">{{user.miles}}</span> miles from your destination.</h3>
+            <h3 ng-hide="checkContact()">We will let you know when you are <span class="mapcontextemp">{{user.miles}}</span> miles from your destination.</h3>
           </div>
           <!-- <select name="selection" ng-model="data.sel" ng-change="options()" class="direction">
             <option selected>Going to W. Farms Rd</option>

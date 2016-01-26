@@ -1,8 +1,8 @@
-subangular.module('busitbaby.services', [])
+angular.module('busitbaby.services', [])
 
 .factory("Auth", function($firebaseAuth) {
   //Shan >> changed line below, passing the url for my deployment of firebase into Firebase constructor
-  var usersRef = new Firebase('https://hrrb-oxygen.firebaseio.com');
+  var usersRef = new Firebase('https://safealert.firebaseio.com');
   return $firebaseAuth(usersRef);
 })
 
@@ -10,6 +10,7 @@ subangular.module('busitbaby.services', [])
 .factory('UserService', function($rootScope, Auth, $http, $q){
 
   var geocoder = new google.maps.Geocoder();
+
   var user = {
     displayName: '',
     emailAddress: '',
@@ -24,7 +25,6 @@ subangular.module('busitbaby.services', [])
   };
 
   var getUser = function() {
-    console.log("returning user info")
     return user;
   };
 
@@ -74,19 +74,52 @@ subangular.module('busitbaby.services', [])
     console.log("a new contact has been added", user);
   };
 
-  var updateUserinDB = function(){ //working on here.
+  // var sendTestMessage = function(number){
+  //   console.log('this fired');
+  //   var defer = $q.defer();
+  //   $http({
+  //       method: 'POST', 
+  //       url: 'http://127.0.0.1:3000/sendsms',
+  //       cache: 'true',
+  //       data: number
+  //     }).success(function (number){
+  //       console.log('text has been sent to', number);
+  //       defer.resolve(user);
+  //     });
+  //     return defer.promise;
+  // };
+
+  function sendTestMessage(number, message){
+    console.log('this fired', number);
+    var defer = $q.defer();
+    $http({
+        url: '/sendsms',
+        method: 'POST', 
+        data: JSON.stringify({number, message}),
+        contentType: 'application/json',
+      }).success(function (name){
+        console.log('text has been sent to', number, 'with the following message:', message);
+        console.log(name.name);
+        defer.resolve(number);
+      });
+      return defer.promise;
+  };
+  // var sendTestMessage = function(){
+  //   console.log('this fired');
+  // };
+
+  var updateUserinDB = function(users){ //working on here.
     var defer = $q.defer();
     $http({
         method: 'POST', 
         url: '/api/users',
         cache: 'true',
-        data: user
+        data: users
       }).success(function (user){
         console.log('user has been updated on DB', user);
         defer.resolve(user);
       });
-
-    return defer.promise;
+      return defer.promise;
   };
 
 
@@ -94,6 +127,7 @@ subangular.module('busitbaby.services', [])
   return {
     getUser: getUser,
     setUser: setUser,
+    sendTestMessage: sendTestMessage,
     addPreviousLocation: addPreviousLocation,
     addContact: addContact,
     updateUserinDB: updateUserinDB

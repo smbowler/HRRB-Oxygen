@@ -194,18 +194,6 @@ app.get('/api/users', function (req, res){
   })
 });
 
-app.get('/foo', function(req,res){
-  res.writeHead(200);
-  res.write('OK');
-  res.end()
-})
-
-app.post('/foo', function(req,res){
-  res.writeHead(200);
-  res.write('OK');
-  res.end()
-})
-
 //POST : /api/users : post a single user data from facebook to a server
 app.post('/api/users', function (req, res){
   var user = new User({

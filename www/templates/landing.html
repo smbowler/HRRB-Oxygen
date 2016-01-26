@@ -1,31 +1,25 @@
-<div ng-controller="MainCtrl" align="center" style="background-color:">
+<div ng-controller="LandingCtrl" align="center">
  <!-- <ion-header-bar class="bar-positive">
       <h1 class="title">Home</h1>
 </ion-header-bar> -->
 
-  <ion-content  class="mainpage">
+  <ion-content>
   <br>
-    <h1>Ping</h1>
-    <p></p>
-    <div class="one">
+    <h3>Welcome to Ping</h3>
+    <p style="margin: 20px">Ping notifies you and a contact when you are close to your destination.</p>
+    <div id="circleDest"></div> <div id="circleDist"></div> <div id="circleCont"></div> 
+    <p> Set a Destination</p> 
+    
+    <p> Set a Distance</p><br>
+    
+    <p> Set a contact </p>
+
+    <div id="circle"></div> 
 
     <br>
-      <h4 class="text">Set Your Destination</h4>
-    </div>
-    <div class="two">
-     <br>
-      <h4>Set Your Distance</h4>
-    </div>
-    <div class="three">
-     <br>
-      <h4>Set Your Your Contact</h4>
-    </div>
-    <br>
-<!--     <div id="circle"></div>  -->
-
     <div ng-controller="loginCtrl">
     <!-- Shan >> changed parameter for login function from 'github' to 'facebook'-->
-    <button class="fbbutton"  ng-click="login('facebook')">Login with Facebook</button>
+    <button class="button"  ng-click="login('facebook')">Login with Facebook</button>
     <br>
 
     <a class="button" href="#/where" style="margin-top: 10px" ng-click="guest();">Use as Guest</a>

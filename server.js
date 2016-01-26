@@ -31,7 +31,7 @@ var port = process.env.PORT || 3000;
 var sendResponse = function(response, data, statusCode){
   statusCode = statusCode || 200;
   response.writeHead(statusCode, headers);
-  response.end(JSON.stringify(data));
+  // response.end(JSON.stringify(data));
 };
 
 app.all('*', function(req, res, next) {
